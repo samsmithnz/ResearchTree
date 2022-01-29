@@ -1,5 +1,7 @@
-﻿namespace ResearchTree;
-public class Class1
+﻿namespace ResearchTree
 {
+    public class Class1
+    {
 
+    }
 }
