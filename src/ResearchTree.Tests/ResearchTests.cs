@@ -1,6 +1,5 @@
-using ResearchTree.Models;
-using ResearchTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ResearchTree.Models;
 
 namespace ResearchTree.Tests
 {
@@ -53,6 +52,18 @@ namespace ResearchTree.Tests
 
             //Assert
             TestSteelWorking(item);
+        }
+
+        [TestMethod]
+        public void ResearchTitaniumWorkingTest()
+        {
+            //Arrange
+            ResearchItem item = ResearchPool.CreateTitaniumWorking();
+
+            //Act            
+
+            //Assert
+            TestTitaniumWorking(item);
         }
 
         private static void TestBasicMining(ResearchItem item)

@@ -12,8 +12,7 @@ namespace ResearchTree
             List<ResearchItem> filteredItems = new List<ResearchItem>();
             foreach (ResearchItem item in ResearchItems)
             {
-                if (item.PreReqs != null &&
-                    item.IsComplete == false)
+                if (item.PreReqs != null && item.IsComplete == false)
                 {
                     bool preReqsAreComplete = true;
                     foreach (string prereqItem in item.PreReqs)
