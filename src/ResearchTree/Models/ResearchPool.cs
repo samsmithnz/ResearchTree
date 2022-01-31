@@ -1,14 +1,28 @@
 ﻿
+using System.Collections.Generic;
+
 namespace ResearchTree.Models
 {
     public static class ResearchPool
     {
+        public static ResearchItem CreateBasicMining()
+        {
+            return new ResearchItem()
+            {
+                Name = "Basic Mining",
+                PreReqs = new List<ResearchItem>(),
+                WorkToComplete = 1,
+                WorkCompleted = 1,
+                IsComplete = true
+            };
+        }
+
         public static ResearchItem CreateBronzeWorking()
         {
             return new ResearchItem()
             {
                 Name = "Bronze Working",
-                ResearchPrereq = null,
+                PreReqs = { CreateBasicMining() },
                 WorkToComplete = 5,
                 WorkCompleted = 5,
                 IsComplete = true
@@ -20,7 +34,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Iron Working",
-                ResearchPrereq = CreateBronzeWorking(),
+                PreReqs = { CreateBronzeWorking() },
                 WorkToComplete = 20,
                 WorkCompleted = 3,
                 IsComplete = false
@@ -32,7 +46,19 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Steel Working",
-                ResearchPrereq = CreateIronWorking(),
+                PreReqs = { CreateIronWorking() },
+                WorkToComplete = 50,
+                WorkCompleted = 0,
+                IsComplete = false
+            };
+        }
+
+        public static ResearchItem CreateAdvancedMining()
+        {
+            return new ResearchItem()
+            {
+                Name = "Advanced Mining",
+                PreReqs = { CreateSteelWorking() },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -44,7 +70,10 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Titanium Working",
-                ResearchPrereq = CreateSteelWorking(),
+                PreReqs = {
+                    CreateAdvancedMining(),
+                    CreateSteelWorking()
+                },
                 WorkToComplete = 100,
                 WorkCompleted = 0,
                 IsComplete = false

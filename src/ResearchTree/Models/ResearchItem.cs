@@ -1,10 +1,17 @@
 ﻿
+using System.Collections.Generic;
+
 namespace ResearchTree.Models
 {
     public class ResearchItem
     {
+        public ResearchItem()
+        {
+            PreReqs = new List<ResearchItem>();
+        }
+
         public string Name { get; set; }
-        public ResearchItem ResearchPrereq { get; set; }
+        public List<ResearchItem> PreReqs { get; set; }
         public int WorkToComplete { get; set; }
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }
