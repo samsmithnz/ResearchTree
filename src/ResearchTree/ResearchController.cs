@@ -17,6 +17,7 @@ namespace ResearchTree
                     bool preReqsAreComplete = true;
                     foreach (string prereqItem in item.PreReqs)
                     {
+                        //This isn't that efficent. How could we optimize this? 
                         if (ResearchItems.Find(r => r.Name == prereqItem).IsComplete == false)
                         {
                             preReqsAreComplete = false;
