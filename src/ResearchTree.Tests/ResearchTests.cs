@@ -80,7 +80,7 @@ namespace ResearchTree.Tests
             Assert.IsNotNull(item);
             Assert.AreEqual("Iron Working", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0].Name);
+            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0]);
             Assert.AreEqual(20, item.WorkToComplete);
             Assert.AreEqual(3, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
@@ -91,7 +91,7 @@ namespace ResearchTree.Tests
             Assert.IsNotNull(item);
             Assert.AreEqual("Steel Working", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateIronWorking().Name, item.PreReqs[0].Name);
+            Assert.AreEqual(ResearchPool.CreateIronWorking().Name, item.PreReqs[0]);
             Assert.AreEqual(50, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
@@ -102,8 +102,8 @@ namespace ResearchTree.Tests
             Assert.IsNotNull(item);
             Assert.AreEqual("Titanium Working", item.Name);
             Assert.AreEqual(2, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateAdvancedMining().Name, item.PreReqs[0].Name);
-            Assert.AreEqual(ResearchPool.CreateSteelWorking().Name, item.PreReqs[1].Name);
+            Assert.AreEqual(ResearchPool.CreateAdvancedMining().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateSteelWorking().Name, item.PreReqs[1]);
             Assert.AreEqual(100, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);

@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ResearchTree.Models
 {
@@ -7,11 +6,11 @@ namespace ResearchTree.Models
     {
         public ResearchItem()
         {
-            PreReqs = new List<ResearchItem>();
+            PreReqs = new List<string>();
         }
 
         public string Name { get; set; }
-        public List<ResearchItem> PreReqs { get; set; }
+        public List<string> PreReqs { get; set; }
         public int WorkToComplete { get; set; }
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }

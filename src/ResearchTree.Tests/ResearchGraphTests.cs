@@ -26,7 +26,7 @@ namespace ResearchTree.Tests
             Assert.IsNotNull(item);
             Assert.AreEqual("Iron Working", item.Name);
             Assert.IsNotNull(item.PreReqs);
-            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0].Name);
+            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0]);
             Assert.AreEqual(20, item.WorkToComplete);
             Assert.AreEqual(3, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);

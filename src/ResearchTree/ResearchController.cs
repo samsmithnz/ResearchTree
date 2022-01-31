@@ -16,9 +16,9 @@ namespace ResearchTree
                     item.IsComplete == false)
                 {
                     bool preReqsAreComplete = true;
-                    foreach (ResearchItem prereqItem in item.PreReqs)
+                    foreach (string prereqItem in item.PreReqs)
                     {
-                        if (prereqItem.IsComplete == false)
+                        if (ResearchItems.Find(r => r.Name == prereqItem).IsComplete == false)
                         {
                             preReqsAreComplete = false;
                             break;

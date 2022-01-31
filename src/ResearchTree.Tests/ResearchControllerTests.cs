@@ -15,9 +15,11 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> list = new()
             {
+                ResearchPool.CreateBasicMining(),
                 ResearchPool.CreateBronzeWorking(),
                 ResearchPool.CreateIronWorking(),
                 ResearchPool.CreateSteelWorking(),
+                ResearchPool.CreateAdvancedMining(),
                 ResearchPool.CreateTitaniumWorking()
             };
             ResearchController controller = new()

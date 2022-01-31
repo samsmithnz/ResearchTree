@@ -10,7 +10,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Basic Mining",
-                PreReqs = new List<ResearchItem>(),
+                PreReqs = new List<string>(),
                 WorkToComplete = 1,
                 WorkCompleted = 1,
                 IsComplete = true
@@ -22,7 +22,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Bronze Working",
-                PreReqs = { CreateBasicMining() },
+                PreReqs = { "Basic Mining" },
                 WorkToComplete = 5,
                 WorkCompleted = 5,
                 IsComplete = true
@@ -34,7 +34,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Iron Working",
-                PreReqs = { CreateBronzeWorking() },
+                PreReqs = { "Bronze Working" },
                 WorkToComplete = 20,
                 WorkCompleted = 3,
                 IsComplete = false
@@ -46,7 +46,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Steel Working",
-                PreReqs = { CreateIronWorking() },
+                PreReqs = { "Iron Working" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -58,7 +58,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "Advanced Mining",
-                PreReqs = { CreateSteelWorking() },
+                PreReqs = { "Steel Working" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -71,8 +71,8 @@ namespace ResearchTree.Models
             {
                 Name = "Titanium Working",
                 PreReqs = {
-                    CreateAdvancedMining(),
-                    CreateSteelWorking()
+                    "Advanced Mining",
+                    "Steel Working"
                 },
                 WorkToComplete = 100,
                 WorkCompleted = 0,
