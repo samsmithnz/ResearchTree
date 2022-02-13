@@ -15,12 +15,13 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> list = new()
             {
-                ResearchPool.CreateBasicMining(),
-                ResearchPool.CreateBronzeWorking(),
-                ResearchPool.CreateIronWorking(),
-                ResearchPool.CreateSteelWorking(),
-                ResearchPool.CreateAdvancedMining(),
-                ResearchPool.CreateTitaniumWorking()
+                ResearchPool.CreateA(),
+                ResearchPool.CreateB(),
+                ResearchPool.CreateC(),
+                ResearchPool.CreateD(),
+                ResearchPool.CreateE(),
+                ResearchPool.CreateF(),
+                ResearchPool.CreateG()
             };
             ResearchController controller = new()
             {
@@ -41,10 +42,10 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> list = new()
             {
-                ResearchPool.CreateBronzeWorking(),
-                ResearchPool.CreateIronWorking(),
-                ResearchPool.CreateSteelWorking(),
-                ResearchPool.CreateTitaniumWorking()
+                ResearchPool.CreateA(),
+                ResearchPool.CreateB(),
+                ResearchPool.CreateC(),
+                ResearchPool.CreateD()
             };
             ResearchController controller = new()
             {
@@ -56,7 +57,7 @@ namespace ResearchTree.Tests
 
             //Assert
             Assert.IsNotNull(results);
-            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(2, results.Count);
         }
 
     }

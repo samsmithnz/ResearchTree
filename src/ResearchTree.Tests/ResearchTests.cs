@@ -8,114 +8,114 @@ namespace ResearchTree.Tests
     public class ResearchTests
     {
         [TestMethod]
-        public void ResearchBasicMiningTest()
+        public void ResearchATest()
         {
             //Arrange
-            ResearchItem item = ResearchPool.CreateBasicMining();
+            ResearchItem item = ResearchPool.CreateA();
 
             //Act            
 
             //Assert
-            TestBasicMining(item);
+            TestA(item);
         }
         [TestMethod]
-        public void ResearchBronzeWorkingTest()
+        public void ResearchBTest()
         {
             //Arrange
-            ResearchItem item = ResearchPool.CreateBronzeWorking();
+            ResearchItem item = ResearchPool.CreateB();
 
             //Act            
 
             //Assert
-            TestBronzeWorking(item);
-        }
-
-        [TestMethod]
-        public void ResearchIronWorkingTest()
-        {
-            //Arrange
-            ResearchItem item = ResearchPool.CreateIronWorking();
-
-            //Act            
-
-            //Assert
-            TestIronWorking(item);
+            TestB(item);
         }
 
         [TestMethod]
-        public void ResearchSteelWorkingTest()
+        public void ResearchCTest()
         {
             //Arrange
-            ResearchItem item = ResearchPool.CreateSteelWorking();
+            ResearchItem item = ResearchPool.CreateC();
 
             //Act            
 
             //Assert
-            TestSteelWorking(item);
+            TestC(item);
         }
 
         [TestMethod]
-        public void ResearchTitaniumWorkingTest()
+        public void ResearchDTest()
         {
             //Arrange
-            ResearchItem item = ResearchPool.CreateTitaniumWorking();
+            ResearchItem item = ResearchPool.CreateD();
 
             //Act            
 
             //Assert
-            TestTitaniumWorking(item);
+            TestD(item);
         }
 
-        private static void TestBasicMining(ResearchItem item)
+        [TestMethod]
+        public void ResearchETest()
+        {
+            //Arrange
+            ResearchItem item = ResearchPool.CreateE();
+
+            //Act            
+
+            //Assert
+            TestE(item);
+        }
+
+        private static void TestA(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Basic Mining", item.Name);
+            Assert.AreEqual("A", item.Name);
             Assert.AreEqual(0, item.PreReqs.Count);
             Assert.AreEqual(1, item.WorkToComplete);
             Assert.AreEqual(1, item.WorkCompleted);
             Assert.AreEqual(true, item.IsComplete);
         }
 
-        private static void TestBronzeWorking(ResearchItem item)
+        private static void TestB(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Bronze Working", item.Name);
+            Assert.AreEqual("B", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
             Assert.AreEqual(5, item.WorkToComplete);
             Assert.AreEqual(5, item.WorkCompleted);
             Assert.AreEqual(true, item.IsComplete);
         }
 
-        private static void TestIronWorking(ResearchItem item)
+        private static void TestC(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Iron Working", item.Name);
+            Assert.AreEqual("C", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateA().Name, item.PreReqs[0]);
             Assert.AreEqual(20, item.WorkToComplete);
             Assert.AreEqual(3, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }
 
-        private static void TestSteelWorking(ResearchItem item)
+        private static void TestD(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Steel Working", item.Name);
-            Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateIronWorking().Name, item.PreReqs[0]);
+            Assert.AreEqual("D", item.Name);
+            Assert.AreEqual(2, item.PreReqs.Count);
+            Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
             Assert.AreEqual(50, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }
 
-        private static void TestTitaniumWorking(ResearchItem item)
+        private static void TestE(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Titanium Working", item.Name);
-            Assert.AreEqual(2, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateAdvancedMining().Name, item.PreReqs[0]);
-            Assert.AreEqual(ResearchPool.CreateSteelWorking().Name, item.PreReqs[1]);
-            Assert.AreEqual(100, item.WorkToComplete);
+            Assert.AreEqual("E", item.Name);
+            Assert.AreEqual(1, item.PreReqs.Count);
+            Assert.AreEqual(ResearchPool.CreateD().Name, item.PreReqs[0]);
+            Assert.AreEqual(50, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }

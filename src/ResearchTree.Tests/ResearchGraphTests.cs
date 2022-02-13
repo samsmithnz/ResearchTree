@@ -9,10 +9,10 @@ namespace ResearchTree.Tests
     public class ResearchGraphTests
     {
         [TestMethod]
-        public void ResearchIronWorkingGraphTest()
+        public void ResearchCGraphTest()
         {
             //Arrange
-            ResearchItem item = ResearchPool.CreateIronWorking();
+            ResearchItem item = ResearchPool.CreateC();
 
             //Act            
 
@@ -24,9 +24,9 @@ namespace ResearchTree.Tests
         private static void TestIronWorking(ResearchItem item)
         {
             Assert.IsNotNull(item);
-            Assert.AreEqual("Iron Working", item.Name);
+            Assert.AreEqual("C", item.Name);
             Assert.IsNotNull(item.PreReqs);
-            Assert.AreEqual(ResearchPool.CreateBronzeWorking().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateA().Name, item.PreReqs[0]);
             Assert.AreEqual(20, item.WorkToComplete);
             Assert.AreEqual(3, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
