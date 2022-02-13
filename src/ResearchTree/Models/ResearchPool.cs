@@ -5,11 +5,11 @@ namespace ResearchTree.Models
 {
     public static class ResearchPool
     {
-        public static ResearchItem CreateBasicMining()
+        public static ResearchItem CreateA()
         {
             return new ResearchItem()
             {
-                Name = "Basic Mining",
+                Name = "A",
                 PreReqs = new List<string>(),
                 WorkToComplete = 1,
                 WorkCompleted = 1,
@@ -17,63 +17,72 @@ namespace ResearchTree.Models
             };
         }
 
-        public static ResearchItem CreateBronzeWorking()
+        public static ResearchItem CreateB()
         {
             return new ResearchItem()
             {
-                Name = "Bronze Working",
-                PreReqs = { "Basic Mining" },
+                Name = "B",
+                PreReqs = { "A" },
                 WorkToComplete = 5,
                 WorkCompleted = 5,
                 IsComplete = true
             };
         }
 
-        public static ResearchItem CreateIronWorking()
+        public static ResearchItem CreateC()
         {
             return new ResearchItem()
             {
-                Name = "Iron Working",
-                PreReqs = { "Bronze Working" },
+                Name = "C",
+                PreReqs = { "A" },
                 WorkToComplete = 20,
                 WorkCompleted = 3,
                 IsComplete = false
             };
         }
 
-        public static ResearchItem CreateSteelWorking()
+        public static ResearchItem CreateD()
         {
             return new ResearchItem()
             {
-                Name = "Steel Working",
-                PreReqs = { "Iron Working" },
+                Name = "D",
+                PreReqs = { "B", "C" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
             };
         }
 
-        public static ResearchItem CreateAdvancedMining()
+        public static ResearchItem CreateE()
         {
             return new ResearchItem()
             {
-                Name = "Advanced Mining",
-                PreReqs = { "Steel Working" },
+                Name = "E",
+                PreReqs = { "D" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
             };
         }
 
-        public static ResearchItem CreateTitaniumWorking()
+        public static ResearchItem CreateF()
         {
             return new ResearchItem()
             {
-                Name = "Titanium Working",
-                PreReqs = {
-                    "Advanced Mining",
-                    "Steel Working"
-                },
+                Name = "F",
+                PreReqs = { "D" },
+                WorkToComplete = 100,
+                WorkCompleted = 0,
+                IsComplete = false
+            };
+        }
+
+        public static ResearchItem CreateG()
+        {
+            return new ResearchItem()
+            {
+                Name = "G",
+                PreReqs = { "F" },
                 WorkToComplete = 100,
                 WorkCompleted = 0,
                 IsComplete = false
