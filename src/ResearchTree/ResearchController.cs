@@ -43,7 +43,7 @@ namespace ResearchTree
             return list;
         }
 
-        public void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)
+        private void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)
         {
             foreach (ResearchItem item in items)
             {
