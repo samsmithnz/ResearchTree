@@ -1,5 +1,6 @@
 ﻿using ResearchTree.Models;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace ResearchTree
 {
@@ -20,24 +21,49 @@ namespace ResearchTree
                 ResearchPool.CreateG()
             };
 
-            //Assign levels to each item. 
-            //First find the level 1 items (no prereqs)
+            //Assign levels to each item.     
             foreach (ResearchItem item in list)
             {
+                //First find the level 1 items (no prereqs)
                 if (item.PreReqs.Count == 0)
                 {
                     item.Level = 1;
                 }
+                //Then for each level 1 item, find it's child, and increment the level
+                UpdateChildrenLevel(list, item.Name, item.Level);
             }
 
-            //Then for each level 1 item, find it's child, and increment the level
+            int width = 100;
+            int height = 100;
+            int horizontalDistance = width / 2;
+            int verticalDistance = height / 2;
+
+            //Now assign positions, based on the level and parent.
+
+            //First look at a level - how many items do we have? Center these vertically as appropriate
+            Dictionary<int, int> levelCounts = new Dictionary<int, int>();
             foreach (ResearchItem item in list)
             {
-                if (item.Level >= 1)
+                if (levelCounts.ContainsKey(item.Level))
                 {
-                    UpdateChildrenLevel(list, item.Name, item.Level);
+                    levelCounts[item.Level]++;
+                }
+                else
+                {
+                    levelCounts.Add(item.Level, 1);
                 }
             }
+
+            //Now look at pre-reqs. How many parents does each item have. Center these vertically as appropriate
+
+            //Now place the squares
+            foreach (ResearchItem item in list)
+            {
+                item.Position = new Vector3((horizontalDistance * item.Level) + (width * (item.Level - 1)), 0f, 0f);
+            }
+
+            //Finally draw lines between them
+
 
             ResearchItems = list;
             return list;
