@@ -31,10 +31,30 @@ namespace ResearchTree
             }
 
             //Then for each level 1 item, find it's child, and increment the level
-
+            foreach (ResearchItem item in list)
+            {
+                if (item.Level >= 1)
+                {
+                    UpdateChildrenLevel(list, item.Name, item.Level);
+                }
+            }
 
             ResearchItems = list;
             return list;
+        }
+
+        public void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)
+        {
+            foreach (ResearchItem item in items)
+            {
+                if (item.PreReqs.Contains(parent))
+                {
+                    if (item.Level <= parentLevel)
+                    {
+                        item.Level = parentLevel + 1;
+                    }
+                }
+            }
         }
 
 

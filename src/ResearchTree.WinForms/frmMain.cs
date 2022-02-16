@@ -8,18 +8,10 @@ namespace ResearchTree.WinForms
         {
             InitializeComponent();
 
-            List<ResearchItem> list = new()
-            {
-                ResearchPool.CreateA(),
-                ResearchPool.CreateB(),
-                ResearchPool.CreateC(),
-                ResearchPool.CreateD(),
-                ResearchPool.CreateE(),
-                ResearchPool.CreateF(),
-                ResearchPool.CreateG()
-            };
+            ResearchController controller = new ResearchController();
+            List<ResearchItem> items = controller.BuildDemoList();
 
-    
+
         }
     }
 }
