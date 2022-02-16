@@ -67,12 +67,17 @@ namespace ResearchTree.WinForms
                             Label vecticalLine3 = new();
                             vecticalLine3.Name = prereqItem.Name + "_Label3";
                             vecticalLine3.BorderStyle = BorderStyle.FixedSingle;
-                            vecticalLine3.Size = new Size(2, item.Height + (item.Height/2));
-                            int x3 = (int)prereqItem.Location.X + prereqItem.Width + (prereqItem.Width/4);
+                            int verticalLineHeight = (int)item.Location.Y - (int)prereqItem.Location.Y;
+                            if (prereqItem.Location.Y > item.Location.Y)
+                            {
+                                verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
+                            }
+                            vecticalLine3.Size = new Size(2, verticalLineHeight);
+                            int x3 = (int)prereqItem.Location.X + prereqItem.Width + (prereqItem.Width / 4);
                             int y3 = (int)prereqItem.Location.Y + (item.Height / 2);
                             if (prereqItem.Location.Y > item.Location.Y)
                             {
-                                y3 -= item.Height + (item.Height/2);
+                                y3 -= ((int)prereqItem.Location.Y - item.Height) + (item.Height / 2);
                             }
                             vecticalLine3.Location = new Point(x3, y3);
                             this.Controls.Add(vecticalLine3);
