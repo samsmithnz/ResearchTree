@@ -33,10 +33,8 @@ namespace ResearchTree
                 UpdateChildrenLevel(list, item.Name, item.Level);
             }
 
-            int width = 100;
-            int height = 100;
-            int horizontalDistance = width / 2;
-            int verticalDistance = height / 2;
+            int horizontalDistance = list[0].Width / 2;
+            //int verticalDistance = list[0].Height / 2;
 
             //Now assign positions, based on the level and parent.
 
@@ -59,7 +57,10 @@ namespace ResearchTree
             //Now place the squares
             foreach (ResearchItem item in list)
             {
-                item.Position = new Vector3((horizontalDistance * item.Level) + (width * (item.Level - 1)), 0f, 0f);
+                //Horizontal locaiton is the width buffer + the width of the item, based on the level
+                float x = (horizontalDistance * item.Level) + (item.Width * (item.Level - 1));
+                float y = 0;
+                item.Position = new Vector3(x, y, 0f);
             }
 
             //Finally draw lines between them
