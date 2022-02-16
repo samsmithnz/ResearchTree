@@ -69,9 +69,10 @@ namespace ResearchTree.Tests
             //Assert
             Assert.IsNotNull(item);
             Assert.AreEqual("D", item.Name);
-            Assert.AreEqual(2, item.PreReqs.Count);
+            Assert.AreEqual(3, item.PreReqs.Count);
             Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
             Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
+            Assert.AreEqual(ResearchPool.CreateH().Name, item.PreReqs[2]);
             Assert.AreEqual(50, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);

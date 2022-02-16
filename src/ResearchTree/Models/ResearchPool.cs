@@ -95,9 +95,9 @@ namespace ResearchTree.Models
             {
                 Name = "H",
                 PreReqs = { "A" },
-                WorkToComplete = 20,
+                WorkToComplete = 3,
                 WorkCompleted = 3,
-                IsComplete = false
+                IsComplete = true
             };
         }
 

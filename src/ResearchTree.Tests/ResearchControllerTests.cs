@@ -36,7 +36,7 @@ namespace ResearchTree.Tests
 
             //Assert
             Assert.IsNotNull(results);
-            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(3, results.Count);
         }
 
         [TestMethod]
@@ -61,10 +61,10 @@ namespace ResearchTree.Tests
             //Second Level
             Assert.IsNotNull(controller.ResearchItems[1]);
             Assert.AreEqual(2, controller.ResearchItems[1].Level);
-            Assert.AreEqual(new Vector3(200, 200, 0), controller.ResearchItems[1].Location);
+            Assert.AreEqual(new Vector3(200, 50, 0), controller.ResearchItems[1].Location);
             Assert.IsNotNull(controller.ResearchItems[2]);
             Assert.AreEqual(2, controller.ResearchItems[2].Level);
-            Assert.AreEqual(new Vector3(200, 50, 0), controller.ResearchItems[2].Location);
+            Assert.AreEqual(new Vector3(200, 200, 0), controller.ResearchItems[2].Location);
 
             //Third Level
             Assert.IsNotNull(controller.ResearchItems[3]);
