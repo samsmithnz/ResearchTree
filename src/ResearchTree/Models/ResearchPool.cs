@@ -46,7 +46,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "D",
-                PreReqs = { "B", "C" },
+                PreReqs = { "B", "C", "H" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -85,6 +85,18 @@ namespace ResearchTree.Models
                 PreReqs = { "F" },
                 WorkToComplete = 100,
                 WorkCompleted = 0,
+                IsComplete = false
+            };
+        }
+
+        public static ResearchItem CreateH()
+        {
+            return new ResearchItem()
+            {
+                Name = "H",
+                PreReqs = { "A" },
+                WorkToComplete = 20,
+                WorkCompleted = 3,
                 IsComplete = false
             };
         }

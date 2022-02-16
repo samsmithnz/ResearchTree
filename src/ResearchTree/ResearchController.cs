@@ -18,7 +18,8 @@ namespace ResearchTree
                 ResearchPool.CreateD(),
                 ResearchPool.CreateE(),
                 ResearchPool.CreateF(),
-                ResearchPool.CreateG()
+                ResearchPool.CreateG(),
+                ResearchPool.CreateH()
             };
 
             //Assign levels to each item.     
