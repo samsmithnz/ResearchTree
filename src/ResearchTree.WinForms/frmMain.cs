@@ -11,6 +11,7 @@ namespace ResearchTree.WinForms
             ResearchController controller = new ResearchController();
             List<ResearchItem> items = controller.BuildDemoList();
 
+            //Draw the nodes
             foreach (ResearchItem item in items)
             {
                 Button button = new();
@@ -20,6 +21,8 @@ namespace ResearchTree.WinForms
                 button.Height = item.Height;
                 this.Controls.Add(button);
             }
+
+            //Now draw the lines between the nodes
 
         }
     }
