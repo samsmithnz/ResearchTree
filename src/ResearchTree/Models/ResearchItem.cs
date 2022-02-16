@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 
 namespace ResearchTree.Models
 {
@@ -7,6 +8,7 @@ namespace ResearchTree.Models
         public ResearchItem()
         {
             PreReqs = new List<string>();
+            Position = Vector3.Zero;
         }
 
         public string Name { get; set; }
@@ -14,6 +16,6 @@ namespace ResearchTree.Models
         public int WorkToComplete { get; set; }
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }
-
+        public Vector3 Position { get; set; }
     }
 }
