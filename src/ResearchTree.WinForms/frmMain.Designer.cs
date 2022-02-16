@@ -48,6 +48,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // button2
             // 
@@ -57,6 +58,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // button3
             // 
@@ -66,6 +68,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             // 
             // button4
             // 
@@ -75,6 +78,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             // 
             // button6
             // 
@@ -84,6 +88,7 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             // 
             // button5
             // 
@@ -93,6 +98,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "button5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             // 
             // button7
             // 
@@ -102,6 +108,7 @@
             this.button7.TabIndex = 7;
             this.button7.Text = "button7";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             // 
             // label1
             // 
@@ -111,6 +118,7 @@
             this.label1.Size = new System.Drawing.Size(34, 2);
             this.label1.TabIndex = 8;
             this.label1.Text = "label1";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -120,6 +128,7 @@
             this.label2.Size = new System.Drawing.Size(2, 150);
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
+            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -129,6 +138,7 @@
             this.label3.Size = new System.Drawing.Size(34, 2);
             this.label3.TabIndex = 10;
             this.label3.Text = "label3";
+            this.label3.Visible = false;
             // 
             // frmMain
             // 

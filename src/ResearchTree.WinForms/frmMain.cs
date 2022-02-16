@@ -18,6 +18,7 @@ namespace ResearchTree.WinForms
                 button.Location = new Point((int)item.Position.X, (int)item.Position.Y);
                 button.Width = item.Width;
                 button.Height = item.Height;
+                this.Controls.Add(button);
             }
 
         }
