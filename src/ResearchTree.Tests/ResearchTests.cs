@@ -16,7 +16,12 @@ namespace ResearchTree.Tests
             //Act            
 
             //Assert
-            TestA(item);
+            Assert.IsNotNull(item);
+            Assert.AreEqual("A", item.Name);
+            Assert.AreEqual(0, item.PreReqs.Count);
+            Assert.AreEqual(1, item.WorkToComplete);
+            Assert.AreEqual(1, item.WorkCompleted);
+            Assert.AreEqual(true, item.IsComplete);
         }
         [TestMethod]
         public void ResearchBTest()
@@ -27,7 +32,12 @@ namespace ResearchTree.Tests
             //Act            
 
             //Assert
-            TestB(item);
+            Assert.IsNotNull(item);
+            Assert.AreEqual("B", item.Name);
+            Assert.AreEqual(1, item.PreReqs.Count);
+            Assert.AreEqual(5, item.WorkToComplete);
+            Assert.AreEqual(5, item.WorkCompleted);
+            Assert.AreEqual(true, item.IsComplete);
         }
 
         [TestMethod]
@@ -39,7 +49,13 @@ namespace ResearchTree.Tests
             //Act            
 
             //Assert
-            TestC(item);
+            Assert.IsNotNull(item);
+            Assert.AreEqual("C", item.Name);
+            Assert.AreEqual(1, item.PreReqs.Count);
+            Assert.AreEqual(ResearchPool.CreateA().Name, item.PreReqs[0]);
+            Assert.AreEqual(20, item.WorkToComplete);
+            Assert.AreEqual(3, item.WorkCompleted);
+            Assert.AreEqual(false, item.IsComplete);
         }
 
         [TestMethod]
@@ -51,7 +67,14 @@ namespace ResearchTree.Tests
             //Act            
 
             //Assert
-            TestD(item);
+            Assert.IsNotNull(item);
+            Assert.AreEqual("D", item.Name);
+            Assert.AreEqual(2, item.PreReqs.Count);
+            Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
+            Assert.AreEqual(50, item.WorkToComplete);
+            Assert.AreEqual(0, item.WorkCompleted);
+            Assert.AreEqual(false, item.IsComplete);
         }
 
         [TestMethod]
@@ -63,54 +86,6 @@ namespace ResearchTree.Tests
             //Act            
 
             //Assert
-            TestE(item);
-        }
-
-        private static void TestA(ResearchItem item)
-        {
-            Assert.IsNotNull(item);
-            Assert.AreEqual("A", item.Name);
-            Assert.AreEqual(0, item.PreReqs.Count);
-            Assert.AreEqual(1, item.WorkToComplete);
-            Assert.AreEqual(1, item.WorkCompleted);
-            Assert.AreEqual(true, item.IsComplete);
-        }
-
-        private static void TestB(ResearchItem item)
-        {
-            Assert.IsNotNull(item);
-            Assert.AreEqual("B", item.Name);
-            Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(5, item.WorkToComplete);
-            Assert.AreEqual(5, item.WorkCompleted);
-            Assert.AreEqual(true, item.IsComplete);
-        }
-
-        private static void TestC(ResearchItem item)
-        {
-            Assert.IsNotNull(item);
-            Assert.AreEqual("C", item.Name);
-            Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateA().Name, item.PreReqs[0]);
-            Assert.AreEqual(20, item.WorkToComplete);
-            Assert.AreEqual(3, item.WorkCompleted);
-            Assert.AreEqual(false, item.IsComplete);
-        }
-
-        private static void TestD(ResearchItem item)
-        {
-            Assert.IsNotNull(item);
-            Assert.AreEqual("D", item.Name);
-            Assert.AreEqual(2, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
-            Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
-            Assert.AreEqual(50, item.WorkToComplete);
-            Assert.AreEqual(0, item.WorkCompleted);
-            Assert.AreEqual(false, item.IsComplete);
-        }
-
-        private static void TestE(ResearchItem item)
-        {
             Assert.IsNotNull(item);
             Assert.AreEqual("E", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);

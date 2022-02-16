@@ -16,6 +16,8 @@ namespace ResearchTree.Models
         public int WorkToComplete { get; set; }
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }
+        //Top left position
         public Vector3 Position { get; set; }
+        public int Level { get; set; }
     }
 }

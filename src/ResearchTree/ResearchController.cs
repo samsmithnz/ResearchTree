@@ -7,6 +7,37 @@ namespace ResearchTree
     {
         public List<ResearchItem> ResearchItems { get; set; }
 
+        public List<ResearchItem> BuildDemoList()
+        {
+            List<ResearchItem> list = new List<ResearchItem>()
+            {
+                ResearchPool.CreateA(),
+                ResearchPool.CreateB(),
+                ResearchPool.CreateC(),
+                ResearchPool.CreateD(),
+                ResearchPool.CreateE(),
+                ResearchPool.CreateF(),
+                ResearchPool.CreateG()
+            };
+
+            //Assign levels to each item. 
+            //First find the level 1 items (no prereqs)
+            foreach (ResearchItem item in list)
+            {
+                if (item.PreReqs.Count == 0)
+                {
+                    item.Level = 1;
+                }
+            }
+
+            //Then for each level 1 item, find it's child, and increment the level
+
+
+            ResearchItems = list;
+            return list;
+        }
+
+
         public List<ResearchItem> GetAvailableResearchItems()
         {
             List<ResearchItem> filteredItems = new List<ResearchItem>();
