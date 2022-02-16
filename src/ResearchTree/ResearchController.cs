@@ -51,5 +51,16 @@ namespace ResearchTree
 
         //}
 
+        public void SetPositions(List<ResearchItem> researchItems)
+        {
+            decimal width = 1.618m;
+            decimal height = 1m;
+
+            foreach (ResearchItem item in researchItems)
+            {
+
+            }
+        }
+
     }
 }
