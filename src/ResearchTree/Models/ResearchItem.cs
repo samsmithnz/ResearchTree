@@ -8,7 +8,7 @@ namespace ResearchTree.Models
         public ResearchItem()
         {
             PreReqs = new List<string>();
-            Position = Vector3.Zero;
+            Location = Vector3.Zero;
             Width = 100;
             Height = 100;
         }
@@ -19,7 +19,7 @@ namespace ResearchTree.Models
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }
         //Top left position
-        public Vector3 Position { get; set; }
+        public Vector3 Location { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public int Level { get; set; }

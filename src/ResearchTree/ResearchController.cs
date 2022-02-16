@@ -61,7 +61,7 @@ namespace ResearchTree
                 float x = (horizontalDistance * item.Level) + (item.Width * (item.Level - 1));
                 float y = (verticalDistance * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
                 levelCounts[item.Level]--;
-                item.Position = new Vector3(x, y, 0f);
+                item.Location = new Vector3(x, y, 0f);
             }
 
             //Finally draw lines between them
@@ -125,21 +125,33 @@ namespace ResearchTree
             return filteredItems;
         }
 
+        public ResearchItem FindItem(string name)
+        {
+            foreach (ResearchItem item in ResearchItems)
+            {
+                if (item.Name == name)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         //public void LoadResearchItems(List<ResearchItem> researchItems)
         //{
 
         //}
 
-        public void SetPositions(List<ResearchItem> researchItems)
-        {
-            decimal width = 1.618m;
-            decimal height = 1m;
+        //public void SetPositions(List<ResearchItem> researchItems)
+        //{
+        //    decimal width = 1.618m;
+        //    decimal height = 1m;
 
-            foreach (ResearchItem item in researchItems)
-            {
+        //    foreach (ResearchItem item in researchItems)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
     }
 }

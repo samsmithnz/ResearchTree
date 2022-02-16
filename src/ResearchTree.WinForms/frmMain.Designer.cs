@@ -38,6 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnHideButtons = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -140,11 +142,31 @@
             this.label3.Text = "label3";
             this.label3.Visible = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(998, 477);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(374, 40);
+            this.comboBox1.TabIndex = 11;
+            // 
+            // btnHideButtons
+            // 
+            this.btnHideButtons.Location = new System.Drawing.Point(1222, 416);
+            this.btnHideButtons.Name = "btnHideButtons";
+            this.btnHideButtons.Size = new System.Drawing.Size(150, 46);
+            this.btnHideButtons.TabIndex = 12;
+            this.btnHideButtons.Text = "hide btns";
+            this.btnHideButtons.UseVisualStyleBackColor = true;
+            this.btnHideButtons.Click += new System.EventHandler(this.btnHideButtons_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 529);
+            this.Controls.Add(this.btnHideButtons);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -173,5 +195,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private ComboBox comboBox1;
+        private Button btnHideButtons;
     }
 }

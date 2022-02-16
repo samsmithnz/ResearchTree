@@ -56,20 +56,20 @@ namespace ResearchTree.Tests
             //First Level
             Assert.IsNotNull(controller.ResearchItems[0]);
             Assert.AreEqual(1, controller.ResearchItems[0].Level);
-            Assert.AreEqual(new Vector3(50, 50, 0), controller.ResearchItems[0].Position);
+            Assert.AreEqual(new Vector3(50, 50, 0), controller.ResearchItems[0].Location);
 
             //Second Level
             Assert.IsNotNull(controller.ResearchItems[1]);
             Assert.AreEqual(2, controller.ResearchItems[1].Level);
-            Assert.AreEqual(new Vector3(200, 200, 0), controller.ResearchItems[1].Position);
+            Assert.AreEqual(new Vector3(200, 200, 0), controller.ResearchItems[1].Location);
             Assert.IsNotNull(controller.ResearchItems[2]);
             Assert.AreEqual(2, controller.ResearchItems[2].Level);
-            Assert.AreEqual(new Vector3(200, 50, 0), controller.ResearchItems[2].Position);
+            Assert.AreEqual(new Vector3(200, 50, 0), controller.ResearchItems[2].Location);
 
             //Third Level
             Assert.IsNotNull(controller.ResearchItems[3]);
             Assert.AreEqual(3, controller.ResearchItems[3].Level);
-            Assert.AreEqual(new Vector3(350, 50, 0), controller.ResearchItems[3].Position);
+            Assert.AreEqual(new Vector3(350, 50, 0), controller.ResearchItems[3].Location);
 
             //Fourth Level
             Assert.IsNotNull(controller.ResearchItems[4]);
