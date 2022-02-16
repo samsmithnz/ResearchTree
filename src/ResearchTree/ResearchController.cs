@@ -56,8 +56,10 @@ namespace ResearchTree
             //Now place the squares
             int horizontalDistance = list[0].Width / 2;
             int verticalDistance = list[0].Height / 2;
-            foreach (ResearchItem item in list)
+            //If we go backwards here, we build the list in the order that it's created
+            for (int i = list.Count-1; i >= 0; i--)
             {
+                ResearchItem item = list[i];
                 //Horizontal locaiton is the width buffer + the width of the item, based on the level
                 float x = (horizontalDistance * item.Level) + (item.Width * (item.Level - 1));
                 float y = (verticalDistance * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
