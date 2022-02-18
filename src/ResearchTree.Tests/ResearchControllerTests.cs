@@ -21,7 +21,7 @@ namespace ResearchTree.Tests
 
             //Assert
             Assert.IsNotNull(results);
-            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(1, results.Count);
         }
 
         [TestMethod]

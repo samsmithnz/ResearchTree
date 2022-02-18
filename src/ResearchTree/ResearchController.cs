@@ -20,10 +20,34 @@ namespace ResearchTree
                 ResearchPool.CreateF(),
                 ResearchPool.CreateG(),
                 ResearchPool.CreateH(),
-                ResearchPool.CreateI(),
-                ResearchPool.CreateJ(),
-                ResearchPool.CreateK()
+                //ResearchPool.CreateI(),
+                //ResearchPool.CreateJ(),
+                //ResearchPool.CreateK()
             };
+
+            //Verify that all of the children exist
+            Dictionary<string, int> itemChecker = new Dictionary<string, int>();
+            foreach (ResearchItem item in items)
+            {
+                if (itemChecker.ContainsKey(item.Name))
+                {
+                    itemChecker[item.Name]++;
+                }
+                else
+                {
+                    itemChecker.Add(item.Name, 1);
+                }
+            }
+            foreach (ResearchItem item in items)
+            {
+                foreach (string prereq in item.PreReqs)
+                {
+                    if (!itemChecker.ContainsKey(prereq))
+                    {
+                        throw new System.Exception("Child '" + prereq + "' not found");
+                    }
+                }
+            }
 
             //Assign levels to each item.     
             foreach (ResearchItem item in items)
@@ -39,7 +63,7 @@ namespace ResearchTree
                 item.Height = height;
             }
 
-           
+
             //Now assign positions, based on the level and parent.
 
             //First look at a level - how many items do we have? Center these vertically as appropriate
@@ -63,7 +87,7 @@ namespace ResearchTree
             int horizontalDistance = items[0].Width / 2;
             int verticalDistance = items[0].Height / 2;
             //If we go backwards here, we build the list in the order that it's created
-            for (int i = items.Count-1; i >= 0; i--)
+            for (int i = items.Count - 1; i >= 0; i--)
             {
                 ResearchItem item = items[i];
                 //Horizontal locaiton is the width buffer + the width of the item, based on the level
