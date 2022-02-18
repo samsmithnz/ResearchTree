@@ -46,10 +46,10 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "D",
-                PreReqs = { "B", "C", "H" },
-                WorkToComplete = 50,
-                WorkCompleted = 0,
-                IsComplete = false
+                PreReqs = { "A" },
+                WorkToComplete = 3,
+                WorkCompleted = 3,
+                IsComplete = true
             };
         }
 
@@ -58,7 +58,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "E",
-                PreReqs = { "D" },
+                PreReqs = { "B", "C" },
                 WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -70,8 +70,8 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "F",
-                PreReqs = { "D" },
-                WorkToComplete = 100,
+                PreReqs = { "E" },
+                WorkToComplete = 50,
                 WorkCompleted = 0,
                 IsComplete = false
             };
@@ -82,7 +82,7 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "G",
-                PreReqs = { "F", "H" },
+                PreReqs = { "E" },
                 WorkToComplete = 100,
                 WorkCompleted = 0,
                 IsComplete = false
@@ -94,10 +94,10 @@ namespace ResearchTree.Models
             return new ResearchItem()
             {
                 Name = "H",
-                PreReqs = { "A" },
-                WorkToComplete = 3,
-                WorkCompleted = 3,
-                IsComplete = true
+                PreReqs = { "G", "D" },
+                WorkToComplete = 100,
+                WorkCompleted = 0,
+                IsComplete = false
             };
         }
 

@@ -59,26 +59,6 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
-        public void ResearchDTest()
-        {
-            //Arrange
-            ResearchItem item = ResearchPool.CreateD();
-
-            //Act            
-
-            //Assert
-            Assert.IsNotNull(item);
-            Assert.AreEqual("D", item.Name);
-            Assert.AreEqual(3, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
-            Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
-            Assert.AreEqual(ResearchPool.CreateH().Name, item.PreReqs[2]);
-            Assert.AreEqual(50, item.WorkToComplete);
-            Assert.AreEqual(0, item.WorkCompleted);
-            Assert.AreEqual(false, item.IsComplete);
-        }
-
-        [TestMethod]
         public void ResearchETest()
         {
             //Arrange
@@ -89,8 +69,27 @@ namespace ResearchTree.Tests
             //Assert
             Assert.IsNotNull(item);
             Assert.AreEqual("E", item.Name);
+            Assert.AreEqual(2, item.PreReqs.Count);
+            Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
+            Assert.AreEqual(50, item.WorkToComplete);
+            Assert.AreEqual(0, item.WorkCompleted);
+            Assert.AreEqual(false, item.IsComplete);
+        }
+
+        [TestMethod]
+        public void ResearchFTest()
+        {
+            //Arrange
+            ResearchItem item = ResearchPool.CreateF();
+
+            //Act            
+
+            //Assert
+            Assert.IsNotNull(item);
+            Assert.AreEqual("F", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
-            Assert.AreEqual(ResearchPool.CreateD().Name, item.PreReqs[0]);
+            Assert.AreEqual(ResearchPool.CreateE().Name, item.PreReqs[0]);
             Assert.AreEqual(50, item.WorkToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
