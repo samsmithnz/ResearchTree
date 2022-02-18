@@ -28,7 +28,7 @@ namespace ResearchTree.WinForms
             //Now draw the lines between the nodes
             foreach (ResearchItem item in items)
             {
-                if (item.Name == "G" && item.PreReqs.Count > 0)
+                if ( item.PreReqs.Count > 0) //item.Name == "H" &&
                 {
                     foreach (string prereq in item.PreReqs)
                     {
@@ -42,15 +42,15 @@ namespace ResearchTree.WinForms
                         //If the item is at the same Y position, draw a single straight line
                         if (prereqItem.Location.Y == item.Location.Y)
                         {
-                            //Label horizontalLine1 = new();
-                            //horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
-                            //horizontalLine1.Size = new Size(horizontalDistance, 2);
-                            //int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            //int y1 = (int)prereqItem.Location.Y + (verticalDistance);
-                            //horizontalLine1.Location = new Point(x1, y1);
-                            //this.Controls.Add(horizontalLine1);
+                            Label horizontalLine1 = new();
+                            horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
+                            horizontalLine1.Size = new Size(horizontalBuffer, 2);
+                            int x1 = (int)prereqItem.Location.X + prereqItem.Width;
+                            int y1 = (int)prereqItem.Location.Y + verticalBuffer;
+                            horizontalLine1.Location = new Point(x1, y1);
+                            this.Controls.Add(horizontalLine1);
                         }
-                        else if (prereqItem.Name == "H")
+                        else //if (prereqItem.Name == "D")
                         {
                             //We need to add two half horizontal lines, and a vertical line
                             Label horizontalLine1 = new();
@@ -66,7 +66,7 @@ namespace ResearchTree.WinForms
                             horizontalLine2.Name = prereqItem.Name + "_Label2";
                             horizontalLine2.BorderStyle = BorderStyle.FixedSingle;
                             horizontalLine2.Size = new Size(horizontalBuffer / 2, 2);
-                            int x2 = (int)prereqItem.Location.X + prereqItem.Width + (horizontalBuffer / 2);
+                            int x2 = (int)item.Location.X - (horizontalBuffer / 2);
                             int y2 = (int)item.Location.Y + verticalBuffer;
                             horizontalLine2.Location = new Point(x2, y2);
                             this.Controls.Add(horizontalLine2);
@@ -80,7 +80,7 @@ namespace ResearchTree.WinForms
                                 verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
                             }
                             vecticalLine3.Size = new Size(2, verticalLineHeight);
-                            int x3 = (int)prereqItem.Location.X + prereqItem.Width + (horizontalBuffer / 2);
+                            int x3 = (int)item.Location.X - (horizontalBuffer / 2); 
                             int y3 = (int)prereqItem.Location.Y + verticalBuffer;
                             if (prereqItem.Location.Y > item.Location.Y)
                             {
