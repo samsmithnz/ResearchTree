@@ -8,9 +8,9 @@ namespace ResearchTree
     {
         public List<ResearchItem> ResearchItems { get; set; }
 
-        public List<ResearchItem> BuildDemoList()
+        public List<ResearchItem> BuildDemoList(int width = 100, int height = 100)
         {
-            List<ResearchItem> list = new List<ResearchItem>()
+            List<ResearchItem> items = new List<ResearchItem>()
             {
                 ResearchPool.CreateA(),
                 ResearchPool.CreateB(),
@@ -26,7 +26,7 @@ namespace ResearchTree
             };
 
             //Assign levels to each item.     
-            foreach (ResearchItem item in list)
+            foreach (ResearchItem item in items)
             {
                 //First find the level 1 items (no prereqs)
                 if (item.PreReqs.Count == 0)
@@ -34,7 +34,9 @@ namespace ResearchTree
                     item.Level = 1;
                 }
                 //Then for each level 1 item, find it's child, and increment the level
-                UpdateChildrenLevel(list, item.Name, item.Level);
+                UpdateChildrenLevel(items, item.Name, item.Level);
+                item.Width = width;
+                item.Height = height;
             }
 
            
@@ -42,7 +44,7 @@ namespace ResearchTree
 
             //First look at a level - how many items do we have? Center these vertically as appropriate
             Dictionary<int, int> levelCounts = new Dictionary<int, int>();
-            foreach (ResearchItem item in list)
+            foreach (ResearchItem item in items)
             {
                 if (levelCounts.ContainsKey(item.Level))
                 {
@@ -57,12 +59,13 @@ namespace ResearchTree
             //Now look at pre-reqs. How many parents does each item have. Center these vertically as appropriate
 
             //Now place the squares
-            int horizontalDistance = list[0].Width / 2;
-            int verticalDistance = list[0].Height / 2;
+            //TODO: This should be a property. 
+            int horizontalDistance = items[0].Width / 2;
+            int verticalDistance = items[0].Height / 2;
             //If we go backwards here, we build the list in the order that it's created
-            for (int i = list.Count-1; i >= 0; i--)
+            for (int i = items.Count-1; i >= 0; i--)
             {
-                ResearchItem item = list[i];
+                ResearchItem item = items[i];
                 //Horizontal locaiton is the width buffer + the width of the item, based on the level
                 float x = (horizontalDistance * item.Level) + (item.Width * (item.Level - 1));
                 float y = (verticalDistance * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
@@ -73,8 +76,8 @@ namespace ResearchTree
             //Finally draw lines between them
 
 
-            ResearchItems = list;
-            return list;
+            ResearchItems = items;
+            return items;
         }
 
         private void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)

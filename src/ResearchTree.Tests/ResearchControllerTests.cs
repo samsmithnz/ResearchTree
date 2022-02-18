@@ -47,7 +47,10 @@ namespace ResearchTree.Tests
             controller.BuildDemoList();
 
             //Act
-            
+            foreach (ResearchItem item in controller.ResearchItems)
+            {
+                item.Width = 100;
+            }
 
             //Assert
             Assert.IsNotNull(controller.ResearchItems);

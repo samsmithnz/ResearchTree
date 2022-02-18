@@ -9,7 +9,10 @@ namespace ResearchTree.WinForms
             InitializeComponent();
 
             ResearchController controller = new ResearchController();
-            List<ResearchItem> items = controller.BuildDemoList();
+            List<ResearchItem> items = controller.BuildDemoList(162, 100);
+
+            int horizontalDistance = items[0].Width / 2;
+            int verticalDistance = items[0].Height / 2;
 
             //Draw the nodes
             foreach (ResearchItem item in items)
@@ -36,9 +39,9 @@ namespace ResearchTree.WinForms
                         {
                             Label horizontalLine1 = new();
                             horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
-                            horizontalLine1.Size = new Size(item.Width / 2, 2);
+                            horizontalLine1.Size = new Size(horizontalDistance, 2);
                             int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y + (item.Height / 2);
+                            int y1 = (int)prereqItem.Location.Y + (verticalDistance);
                             horizontalLine1.Location = new Point(x1, y1);
                             this.Controls.Add(horizontalLine1);
                         }
@@ -48,20 +51,19 @@ namespace ResearchTree.WinForms
                             Label horizontalLine1 = new();
                             horizontalLine1.Name = prereqItem.Name + "_Label1";
                             horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
-                            horizontalLine1.Size = new Size(item.Width / 4, 2);
+                            horizontalLine1.Size = new Size(horizontalDistance / 2, 2);
                             int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y + (item.Height / 2);
+                            int y1 = (int)prereqItem.Location.Y + (verticalDistance);
                             horizontalLine1.Location = new Point(x1, y1);
                             this.Controls.Add(horizontalLine1);
 
                             Label horizontalLine2 = new();
                             horizontalLine2.Name = prereqItem.Name + "_Label2";
                             horizontalLine2.BorderStyle = BorderStyle.FixedSingle;
-                            horizontalLine2.Size = new Size(item.Width / 4, 2);
-                            int x2 = (int)prereqItem.Location.X + prereqItem.Width + (prereqItem.Width / 4);
-                            int y2 = (int)item.Location.Y + (item.Height / 2);
+                            horizontalLine2.Size = new Size(horizontalDistance / 2, 2);
+                            int x2 = (int)prereqItem.Location.X + prereqItem.Width + (horizontalDistance / 2);
+                            int y2 = (int)item.Location.Y + (verticalDistance);
                             horizontalLine2.Location = new Point(x2, y2);
-                            horizontalLine2.BringToFront();
                             this.Controls.Add(horizontalLine2);
 
                             Label vecticalLine3 = new();
@@ -73,11 +75,11 @@ namespace ResearchTree.WinForms
                                 verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
                             }
                             vecticalLine3.Size = new Size(2, verticalLineHeight);
-                            int x3 = (int)prereqItem.Location.X + prereqItem.Width + (prereqItem.Width / 4);
-                            int y3 = (int)prereqItem.Location.Y + (item.Height / 2);
+                            int x3 = (int)prereqItem.Location.X + prereqItem.Width + (horizontalDistance / 2);
+                            int y3 = (int)prereqItem.Location.Y + (verticalDistance);
                             if (prereqItem.Location.Y > item.Location.Y)
                             {
-                                y3 -= ((int)prereqItem.Location.Y - item.Height) + (item.Height / 2);
+                                y3 -= ((int)prereqItem.Location.Y - item.Height) + (verticalDistance);
                             }
                             vecticalLine3.Location = new Point(x3, y3);
                             this.Controls.Add(vecticalLine3);

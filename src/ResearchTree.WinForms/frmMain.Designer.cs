@@ -34,15 +34,17 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(998, 670);
+            this.comboBox1.Location = new System.Drawing.Point(1249, 670);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(374, 40);
             this.comboBox1.TabIndex = 11;
             // 
             // btnHideButtons
             // 
-            this.btnHideButtons.Location = new System.Drawing.Point(1222, 618);
+            this.btnHideButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHideButtons.Location = new System.Drawing.Point(1473, 618);
             this.btnHideButtons.Name = "btnHideButtons";
             this.btnHideButtons.Size = new System.Drawing.Size(150, 46);
             this.btnHideButtons.TabIndex = 12;
@@ -54,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 722);
+            this.ClientSize = new System.Drawing.Size(1635, 722);
             this.Controls.Add(this.btnHideButtons);
             this.Controls.Add(this.comboBox1);
             this.Name = "frmMain";

@@ -9,7 +9,7 @@ namespace ResearchTree.Models
         {
             PreReqs = new List<string>();
             Location = Vector3.Zero;
-            Width = 100;
+            Width = 100; //Golden Ratio: 1.618
             Height = 100;
         }
 
