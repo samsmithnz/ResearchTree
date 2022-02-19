@@ -9,8 +9,9 @@ namespace ResearchTree.Models
         {
             PreReqs = new List<string>();
             Location = Vector3.Zero;
-            Width = 100; //Golden Ratio: 1.618
+            Width = 100; //Golden Ratio = 1 x 1.618
             Height = 100;
+            Edges = new List<(Vector3, Vector3)>();
         }
 
         public string Name { get; set; }
@@ -23,5 +24,6 @@ namespace ResearchTree.Models
         public int Width { get; set; }
         public int Height { get; set; }
         public int Level { get; set; }
+        public List<(Vector3, Vector3)> Edges { get; set; }
     }
 }
