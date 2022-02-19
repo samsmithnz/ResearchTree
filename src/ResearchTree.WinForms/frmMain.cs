@@ -43,6 +43,7 @@ namespace ResearchTree.WinForms
                         if (prereqItem.Location.Y == item.Location.Y)
                         {
                             Label horizontalLine1 = new();
+                            horizontalLine1.Name = prereqItem.Name + "_Label1";
                             horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
                             horizontalLine1.Size = new Size(horizontalBuffer, 2);
                             int x1 = (int)prereqItem.Location.X + prereqItem.Width;
