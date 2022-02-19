@@ -12,7 +12,7 @@ namespace ResearchTree
         public int ItemWidthBuffer { get; set; }
         public int ItemHeightBuffer { get; set; }
 
-        public ResearchController(List<ResearchItem> items, 
+        public ResearchController(List<ResearchItem> items,
             int itemWidth = 100, int itemHeight = 100,
             int itemWidthBuffer = 50, int itemHeightBuffer = 50)
         {
@@ -24,21 +24,9 @@ namespace ResearchTree
 
             //Verify that all of the children exist
             ValidateItems(items);
-          
-            //Assign levels to each item.     
-            foreach (ResearchItem item in items)
-            {
-                //First find the level 1 items (no prereqs)
-                if (item.PreReqs.Count == 0)
-                {
-                    item.Level = 1;
-                }
-                //Then for each level 1 item, find it's child, and increment the level
-                UpdateChildrenLevel(items, item.Name, item.Level);
-                item.Width = itemWidth;
-                item.Height = itemHeight;
-            }
 
+            //Assign levels to each research item.
+            AssignLevels(items, itemWidth, itemHeight);
 
             //Now assign positions, based on the level and parent.
 
@@ -161,17 +149,20 @@ namespace ResearchTree
         private bool ValidateItems(List<ResearchItem> items)
         {
             Dictionary<string, int> itemChecker = new Dictionary<string, int>();
+            //Add each item to a dictonary, checking that the list is unique
             foreach (ResearchItem item in items)
             {
                 if (itemChecker.ContainsKey(item.Name))
                 {
-                    itemChecker[item.Name]++;
+                    //itemChecker[item.Name]++;
+                    throw new System.Exception("Item '" + item.Name + "' exists more than once");
                 }
                 else
                 {
                     itemChecker.Add(item.Name, 1);
                 }
             }
+            //Check that each pre-req exists in the dictonary
             foreach (ResearchItem item in items)
             {
                 foreach (string prereq in item.PreReqs)
@@ -183,6 +174,25 @@ namespace ResearchTree
                 }
             }
             return true;
+        }
+
+        private void AssignLevels(List<ResearchItem> items,
+            int itemWidth, int itemHeight)
+        {
+            foreach (ResearchItem item in items)
+            {
+                //First find the level 1 items (no prereqs)
+                if (item.PreReqs.Count == 0)
+                {
+                    item.Level = 1;
+                }
+                //Then for each level 1 item, find it's child, and increment the level
+                UpdateChildrenLevel(items, item.Name, item.Level);
+
+                //Assign a standard height and width to every item
+                item.Width = itemWidth;
+                item.Height = itemHeight;
+            }
         }
     }
 }

@@ -88,6 +88,26 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
+        public void ResearchItemsWithDuplicatesThrowException()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            items.Add(new ResearchItem()
+            {
+                Name = "A"
+            });
+            try
+            {
+                ResearchController controller = new(items);
+            }
+            catch (Exception ex)
+            {
+                //Assert
+                Assert.AreEqual("Item 'A' exists more than once", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void ResearchItemsWithMissingChildThrowException()
         {
             //Arrange
