@@ -1,6 +1,5 @@
-using ResearchTree.Models;
-using ResearchTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ResearchTree.Models;
 
 namespace ResearchTree.Tests
 {
