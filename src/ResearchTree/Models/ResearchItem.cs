@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace ResearchTree.Models
@@ -11,7 +12,7 @@ namespace ResearchTree.Models
             Location = Vector3.Zero;
             Width = 100; //Golden Ratio = 1 x 1.618
             Height = 100;
-            Edges = new List<(Vector3, Vector3)>();
+            Edges = new List<Tuple<Vector3, Vector3>>();
         }
 
         public string Name { get; set; }
@@ -26,7 +27,7 @@ namespace ResearchTree.Models
         //Top left position
         public Vector3 Location { get; set; }
         //List of edges from the item and it's prereqs 
-        public List<(Vector3, Vector3)> Edges { get; set; }
+        public List<Tuple<Vector3, Vector3>> Edges { get; set; }
         //TODO: Consider a readonly list of starting Vector3 and line length
         //public List<(Vector3, int)> EdgeLengths { get; set; }
     }
