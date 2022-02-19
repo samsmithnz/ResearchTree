@@ -348,3 +348,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/ResearchTree/Library
+/ResearchTree/MonoBleedingEdge
+/ResearchTree/Temp
+/ResearchTree/ResearchTree_Data
+/ResearchTree/ResearchTree.exe
+/ResearchTree/UnityCrashHandler64.exe
+/ResearchTree/UnityPlayer.dll
+/ResearchTree/UserSettings
