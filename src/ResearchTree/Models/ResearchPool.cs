@@ -5,6 +5,25 @@ namespace ResearchTree.Models
 {
     public static class ResearchPool
     {
+        public static List<ResearchItem> BuildDemoList()
+        {
+            List<ResearchItem> items = new List<ResearchItem>()
+            {
+                ResearchPool.CreateA(),
+                ResearchPool.CreateB(),
+                ResearchPool.CreateC(),
+                ResearchPool.CreateD(),
+                ResearchPool.CreateE(),
+                ResearchPool.CreateF(),
+                ResearchPool.CreateG(),
+                ResearchPool.CreateH(),
+                //ResearchPool.CreateI(),
+                //ResearchPool.CreateJ(),
+                //ResearchPool.CreateK()
+            };
+            return items;
+        }
+
         public static ResearchItem CreateA()
         {
             return new ResearchItem()

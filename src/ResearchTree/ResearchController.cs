@@ -8,23 +8,8 @@ namespace ResearchTree
     {
         public List<ResearchItem> ResearchItems { get; set; }
 
-        public List<ResearchItem> BuildDemoList(int width = 100, int height = 100)
+        public ResearchController(List<ResearchItem> items, int width = 100, int height = 100)
         {
-            List<ResearchItem> items = new List<ResearchItem>()
-            {
-                ResearchPool.CreateA(),
-                ResearchPool.CreateB(),
-                ResearchPool.CreateC(),
-                ResearchPool.CreateD(),
-                ResearchPool.CreateE(),
-                ResearchPool.CreateF(),
-                ResearchPool.CreateG(),
-                ResearchPool.CreateH(),
-                //ResearchPool.CreateI(),
-                //ResearchPool.CreateJ(),
-                //ResearchPool.CreateK()
-            };
-
             //Verify that all of the children exist
             Dictionary<string, int> itemChecker = new Dictionary<string, int>();
             foreach (ResearchItem item in items)
@@ -99,9 +84,7 @@ namespace ResearchTree
 
             //Finally draw lines between them
 
-
             ResearchItems = items;
-            return items;
         }
 
         private void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)

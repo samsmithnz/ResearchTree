@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ResearchTree.Models;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -13,8 +14,8 @@ namespace ResearchTree.Tests
         public void ResearchItemsAreActiveTest()
         {
             //Arrange
-            ResearchController controller = new();
-            controller.BuildDemoList();
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items);
 
             //Act
             List<ResearchItem> results = controller.GetAvailableResearchItems();
@@ -28,8 +29,8 @@ namespace ResearchTree.Tests
         public void ResearchItemsAreCompletedTest()
         {
             //Arrange
-            ResearchController controller = new();
-            controller.BuildDemoList();
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items);
 
             //Act
             List<ResearchItem> results = controller.GetCompletedResearchItems();
@@ -43,8 +44,8 @@ namespace ResearchTree.Tests
         public void ResearchItemsPositionTest()
         {
             //Arrange
-            ResearchController controller = new();
-            controller.BuildDemoList();
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items);
 
             //Act
             foreach (ResearchItem item in controller.ResearchItems)
@@ -83,8 +84,27 @@ namespace ResearchTree.Tests
             //Fifth Level
             Assert.IsNotNull(controller.ResearchItems[6]);
             Assert.AreEqual(4, controller.ResearchItems[6].Level);
+        }
 
-
+        [TestMethod]
+        public void ResearchItemsWithMissingChildThrowException()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            items.Add(new ResearchItem()
+            {
+                Name = "Z",
+                PreReqs = new List<string>() { "X", "Y", "Z" }
+            });
+            try
+            {
+                ResearchController controller = new(items);
+            }
+            catch (Exception ex)
+            {
+                //Assert
+                Assert.AreEqual("Child 'X' not found", ex.Message);
+            }
         }
 
     }
