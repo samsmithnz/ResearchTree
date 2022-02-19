@@ -28,7 +28,7 @@ namespace ResearchTree.WinForms
             //Now draw the lines between the nodes
             foreach (ResearchItem item in items)
             {
-                if ( item.PreReqs.Count > 0) //item.Name == "H" &&
+                if (item.PreReqs.Count > 0) //item.Name == "H" &&
                 {
                     foreach (string prereq in item.PreReqs)
                     {
@@ -81,7 +81,7 @@ namespace ResearchTree.WinForms
                                 verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
                             }
                             vecticalLine3.Size = new Size(2, verticalLineHeight);
-                            int x3 = (int)item.Location.X - (horizontalBuffer / 2); 
+                            int x3 = (int)item.Location.X - (horizontalBuffer / 2);
                             int y3 = (int)prereqItem.Location.Y + verticalBuffer;
                             if (prereqItem.Location.Y > item.Location.Y)
                             {
