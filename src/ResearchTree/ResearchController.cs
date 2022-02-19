@@ -8,7 +8,9 @@ namespace ResearchTree
     {
         public List<ResearchItem> ResearchItems { get; set; }
 
-        public ResearchController(List<ResearchItem> items, int width = 100, int height = 100)
+        public ResearchController(List<ResearchItem> items, 
+            int itemWidth = 100, int itemHeight = 100,
+            int itemWidthBuffer = 50, int itemHeightBuffer = 50)
         {
             //Verify that all of the children exist
             Dictionary<string, int> itemChecker = new Dictionary<string, int>();
@@ -44,8 +46,8 @@ namespace ResearchTree
                 }
                 //Then for each level 1 item, find it's child, and increment the level
                 UpdateChildrenLevel(items, item.Name, item.Level);
-                item.Width = width;
-                item.Height = height;
+                item.Width = itemWidth;
+                item.Height = itemHeight;
             }
 
 
@@ -69,20 +71,18 @@ namespace ResearchTree
 
             //Now place the squares
             //TODO: This should be a property. 
-            int horizontalDistance = items[0].Width / 2;
-            int verticalDistance = items[0].Height / 2;
             //If we go backwards here, we build the list in the order that it's created
             for (int i = items.Count - 1; i >= 0; i--)
             {
                 ResearchItem item = items[i];
                 //Horizontal locaiton is the width buffer + the width of the item, based on the level
-                float x = (horizontalDistance * item.Level) + (item.Width * (item.Level - 1));
-                float y = (verticalDistance * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
+                float x = (itemWidthBuffer * item.Level) + (item.Width * (item.Level - 1));
+                float y = (itemHeightBuffer * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
                 levelCounts[item.Level]--;
                 item.Location = new Vector3(x, y, 0f);
             }
 
-            //Finally draw lines between them
+            //Finally draw lines between each node
 
             ResearchItems = items;
         }

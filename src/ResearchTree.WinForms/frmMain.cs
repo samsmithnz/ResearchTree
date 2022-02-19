@@ -8,11 +8,13 @@ namespace ResearchTree.WinForms
         {
             InitializeComponent();
 
-            ResearchController controller = new ResearchController();
-            List<ResearchItem> items = controller.BuildDemoList(162, 100);
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items,
+                162, 100,
+                81, 50);
 
-            int horizontalBuffer = items[0].Width / 2;
-            int verticalBuffer = items[0].Height / 2;
+            int horizontalBuffer = 81;
+            int verticalBuffer = 50;
 
             //Draw the nodes
             foreach (ResearchItem item in items)
