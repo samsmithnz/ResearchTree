@@ -13,8 +13,8 @@ namespace ResearchTree.WinForms
                 162, 100,
                 81, 50);
 
-            int horizontalBuffer = 81;
-            int verticalBuffer = 50;
+            int horizontalBuffer = controller.ItemWidthBuffer;
+            int verticalBuffer = controller.ItemHeightBuffer;
 
             //Draw the nodes
             foreach (ResearchItem item in items)

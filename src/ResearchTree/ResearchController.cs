@@ -7,11 +7,21 @@ namespace ResearchTree
     public class ResearchController
     {
         public List<ResearchItem> ResearchItems { get; set; }
+        public int ItemWidth { get; set; }
+        public int ItemHeight { get; set; }
+        public int ItemWidthBuffer { get; set; }
+        public int ItemHeightBuffer { get; set; }
 
         public ResearchController(List<ResearchItem> items, 
             int itemWidth = 100, int itemHeight = 100,
             int itemWidthBuffer = 50, int itemHeightBuffer = 50)
         {
+            ItemWidth = itemWidth;
+            ItemHeight = itemHeight;
+            ItemWidthBuffer = itemWidthBuffer;
+            ItemHeightBuffer = itemHeightBuffer;
+
+
             //Verify that all of the children exist
             Dictionary<string, int> itemChecker = new Dictionary<string, int>();
             foreach (ResearchItem item in items)

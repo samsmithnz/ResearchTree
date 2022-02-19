@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResearchTree", "ResearchTre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResearchTree.WPF", "ResearchTree.WPF\ResearchTree.WPF.csproj", "{433922FD-495D-4C96-B523-8C780A84E34E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResearchTree.WinForms", "ResearchTree.WinForms\ResearchTree.WinForms.csproj", "{629B67E0-41B6-4BED-AF1B-806E28861C0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResearchTree.WinForms", "ResearchTree.WinForms\ResearchTree.WinForms.csproj", "{629B67E0-41B6-4BED-AF1B-806E28861C0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{117E1339-28E8-4396-9581-030B2DAB5198}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
