@@ -6,6 +6,7 @@ using System.Numerics;
 
 namespace ResearchTree.Tests
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [TestClass]
     [TestCategory("L0")]
     public class ResearchControllerTests
