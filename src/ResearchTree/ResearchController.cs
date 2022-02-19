@@ -23,29 +23,8 @@ namespace ResearchTree
 
 
             //Verify that all of the children exist
-            Dictionary<string, int> itemChecker = new Dictionary<string, int>();
-            foreach (ResearchItem item in items)
-            {
-                if (itemChecker.ContainsKey(item.Name))
-                {
-                    itemChecker[item.Name]++;
-                }
-                else
-                {
-                    itemChecker.Add(item.Name, 1);
-                }
-            }
-            foreach (ResearchItem item in items)
-            {
-                foreach (string prereq in item.PreReqs)
-                {
-                    if (!itemChecker.ContainsKey(prereq))
-                    {
-                        throw new System.Exception("Child '" + prereq + "' not found");
-                    }
-                }
-            }
-
+            ValidateItems(items);
+          
             //Assign levels to each item.     
             foreach (ResearchItem item in items)
             {
@@ -179,5 +158,31 @@ namespace ResearchTree
         //    }
         //}
 
+        private bool ValidateItems(List<ResearchItem> items)
+        {
+            Dictionary<string, int> itemChecker = new Dictionary<string, int>();
+            foreach (ResearchItem item in items)
+            {
+                if (itemChecker.ContainsKey(item.Name))
+                {
+                    itemChecker[item.Name]++;
+                }
+                else
+                {
+                    itemChecker.Add(item.Name, 1);
+                }
+            }
+            foreach (ResearchItem item in items)
+            {
+                foreach (string prereq in item.PreReqs)
+                {
+                    if (!itemChecker.ContainsKey(prereq))
+                    {
+                        throw new System.Exception("Child '" + prereq + "' not found");
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
