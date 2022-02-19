@@ -19,11 +19,15 @@ namespace ResearchTree.Models
         public int WorkToComplete { get; set; }
         public int WorkCompleted { get; set; }
         public bool IsComplete { get; set; }
-        //Top left position
-        public Vector3 Location { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public int Level { get; set; }
+
+        //Top left position
+        public Vector3 Location { get; set; }
+        //List of edges from the item and it's prereqs 
         public List<(Vector3, Vector3)> Edges { get; set; }
+        //TODO: Consider a readonly list of starting Vector3 and line length
+        //public List<(Vector3, int)> EdgeLengths { get; set; }
     }
 }
