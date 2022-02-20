@@ -104,7 +104,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual("H", controller.ResearchItems[7].Name);
             Assert.AreEqual(5, controller.ResearchItems[7].Level);
             Assert.AreEqual(new Vector3(650, 50, 0), controller.ResearchItems[7].Location);
-            Assert.AreEqual(6, controller.ResearchItems[7].Edges.Count);
+            Assert.AreEqual(5, controller.ResearchItems[7].Edges.Count);
             Assert.AreEqual(new Vector3(600, 250, 0), controller.ResearchItems[7].Edges[0].Item1);
             Assert.AreEqual(new Vector3(625, 250, 0), controller.ResearchItems[7].Edges[0].Item2);
             Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[1].Item1);
@@ -113,11 +113,8 @@ namespace ResearchTree.Tests
             Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[2].Item2);
             Assert.AreEqual(new Vector3(300, 400, 0), controller.ResearchItems[7].Edges[3].Item1);
             Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[3].Item2);
-            Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[4].Item1);
-            Assert.AreEqual(new Vector3(650, 100, 0), controller.ResearchItems[7].Edges[4].Item2);
-            Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[5].Item1);
-            Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[5].Item2);
-
+            Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[4].Item1);
+            Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[4].Item2);
         }
 
         [TestMethod]

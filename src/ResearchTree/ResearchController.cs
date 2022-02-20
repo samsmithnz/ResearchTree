@@ -30,7 +30,6 @@ namespace ResearchTree
             AssignLevels(items, itemWidth, itemHeight);
 
             //Now assign positions, based on the level and parent.
-
             //First look at a level - how many items do we have? Center these vertically as appropriate
             Dictionary<int, int> levelCounts = new Dictionary<int, int>();
             foreach (ResearchItem item in items)
@@ -45,7 +44,7 @@ namespace ResearchTree
                 }
             }
 
-            //Now look at pre-reqs. How many parents does each item have. Center these vertically as appropriate
+            //TODO: Now look at pre-reqs. How many parents does each item have. Center these vertically as appropriate
 
             //Now place the squares
             //If we go backwards here, we build the list in the order that it's created
@@ -78,75 +77,44 @@ namespace ResearchTree
                         {
                             int x1 = (int)prereqItem.Location.X + prereqItem.Width;
                             int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
-                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
                                 new Vector3(x1, y1, 0f),
-                                new Vector3(x1 + itemWidthBuffer, y1, 0f)
-                            ));
+                                new Vector3(x1 + itemWidthBuffer, y1, 0f));
+                            if (item.Edges.Contains(tuple1) == false)
+                            {
+                                item.Edges.Add(tuple1);
+                            }
                         }
                         else //if (prereqItem.Name == "D")
                         {
                             //We need to add two half horizontal lines, and a vertical line
                             int x1 = (int)prereqItem.Location.X + prereqItem.Width;
                             int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
-                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
                                 new Vector3(x1, y1, 0f),
-                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f)
-                            ));
+                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f));
+                            if (item.Edges.Contains(tuple1) == false)
+                            {
+                                item.Edges.Add(tuple1);
+                            }
 
                             int x2 = (int)item.Location.X - (ItemWidthBuffer / 2);
                             int y2 = (int)item.Location.Y + ItemHeightBuffer;
-                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple2 = new Tuple<Vector3, Vector3>(
                                 new Vector3(x2, y2, 0f),
-                                new Vector3(item.Location.X, y2, 0f)
-                            ));
+                                new Vector3(item.Location.X, y2, 0f));
+                            if (item.Edges.Contains(tuple2) == false)
+                            {
+                                item.Edges.Add(tuple2);
+                            }
 
-                            //int x3 = (int)item.Location.X - (ItemWidthBuffer / 2);
-                            //int y3 = (int)prereqItem.Location.Y + ItemHeightBuffer;
-                            //int verticalLineHeight = (int)item.Location.Y - (int)prereqItem.Location.Y;
-                            //if (prereqItem.Location.Y > item.Location.Y)
-                            //{
-                            //    verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
-                            //}
-                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple3 = new Tuple<Vector3, Vector3>(
                                 new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f),
-                                new Vector3(x2, y2, 0f)
-                            ));
-
-                            //Label horizontalLine1 = new();
-                            //horizontalLine1.Name = prereqItem.Name + "_Label1";
-                            //horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
-                            //horizontalLine1.Size = new Size(horizontalGap - prereqItem.Width - (ItemHeightBuffer / 2), 2);
-                            //int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            //int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
-                            //horizontalLine1.Location = new Point(x1, y1);
-                            //this.Controls.Add(horizontalLine1);
-
-                            //Label horizontalLine2 = new();
-                            //horizontalLine2.Name = prereqItem.Name + "_Label2";
-                            //horizontalLine2.BorderStyle = BorderStyle.FixedSingle;
-                            //horizontalLine2.Size = new Size(ItemHeightBuffer / 2, 2);
-                            //int x2 = (int)item.Location.X - (ItemHeightBuffer / 2);
-                            //int y2 = (int)item.Location.Y + ItemHeightBuffer;
-                            //horizontalLine2.Location = new Point(x2, y2);
-                            //this.Controls.Add(horizontalLine2);
-
-                            //Label vecticalLine3 = new();
-                            //vecticalLine3.Name = prereqItem.Name + "_Label3";
-                            //vecticalLine3.BorderStyle = BorderStyle.FixedSingle;
-                            //int verticalLineHeight = (int)item.Location.Y - (int)prereqItem.Location.Y;
-                            //if (prereqItem.Location.Y > item.Location.Y)
-                            //{
-                            //    verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
-                            //}
-                            //vecticalLine3.Size = new Size(2, verticalLineHeight);
-                            //int x3 = (int)item.Location.X - (ItemHeightBuffer / 2);
-                            //int y3 = (int)prereqItem.Location.Y + ItemHeightBuffer;
-                            //if (prereqItem.Location.Y > item.Location.Y)
-                            //{
-                            //    y3 -= ((int)prereqItem.Location.Y - item.Height) + ItemHeightBuffer;
-                            //}
-                            //vecticalLine3.Location = new Point(x3, y3);
-                            //this.Controls.Add(vecticalLine3);
+                                new Vector3(x2, y2, 0f));
+                            if (item.Edges.Contains(tuple3) == false)
+                            {
+                                item.Edges.Add(tuple3);
+                            }
                         }
                     }
                 }
