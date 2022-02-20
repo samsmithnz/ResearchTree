@@ -50,9 +50,9 @@ namespace ResearchTree
             for (int i = items.Count - 1; i >= 0; i--)
             {
                 ResearchItem item = items[i];
-                //Horizontal locaton is the width buffer + the width of the item, based on the level
-                float x = (itemWidthBuffer * item.Level) + (item.Width * (item.Level - 1));
-                float y = (itemHeightBuffer * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
+                //Horizontal location is the center of the square, calculated with width buffer + the width of the item, based on the level
+                float x = (itemWidthBuffer * item.Level) + (item.Width * (item.Level - 1)) + item.Width / 2;
+                float y = (itemHeightBuffer * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1)) + item.Height / 2;
                 levelCounts[item.Level]--;
                 item.Location = new Vector3(x, y, 0f);
             }
