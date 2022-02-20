@@ -116,6 +116,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[4].Item1);
             Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[4].Item2);
 
+            //Check the number of edges
             int totalEdges = 0;
             foreach (ResearchItem item in controller.ResearchItems)
             {
