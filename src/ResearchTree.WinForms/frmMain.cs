@@ -61,6 +61,18 @@ namespace ResearchTree.WinForms
                     this.Controls.Add(line);
                 }
             }
+
+            foreach (Control control in this.Controls)
+            {
+                if (control.GetType() == typeof(Button))
+                {
+                    control.SendToBack();
+                }
+                else
+                {
+                    control.BringToFront();
+                }
+            }
         }
 
         private void btnHideButtons_Click(object sender, EventArgs e)
