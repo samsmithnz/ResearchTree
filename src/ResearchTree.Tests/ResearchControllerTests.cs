@@ -90,7 +90,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual(3, controller.ResearchItems[4].Level);
 
             //Fourth Level
-            //Assert.IsNotNull(controller.ResearchItems[5]);
+            Assert.IsNotNull(controller.ResearchItems[5]);
             Assert.AreEqual("F", controller.ResearchItems[5].Name);
             Assert.AreEqual(4, controller.ResearchItems[5].Level);
 
@@ -115,6 +115,14 @@ namespace ResearchTree.Tests
             Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[3].Item2);
             Assert.AreEqual(new Vector3(625, 400, 0), controller.ResearchItems[7].Edges[4].Item1);
             Assert.AreEqual(new Vector3(625, 100, 0), controller.ResearchItems[7].Edges[4].Item2);
+
+            int totalEdges = 0;
+            foreach (ResearchItem item in controller.ResearchItems)
+            {
+                totalEdges += item.Edges.Count;
+            }
+            Assert.AreEqual(20, totalEdges);
+        
         }
 
         [TestMethod]
