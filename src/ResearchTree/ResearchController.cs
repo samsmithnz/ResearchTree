@@ -66,11 +66,11 @@ namespace ResearchTree
                     foreach (string prereq in item.PreReqs)
                     {
                         ResearchItem prereqItem = FindItem(items, prereq);
-                        int horizontalGap = (int)(item.Location.X - prereqItem.Location.X);
-                        if (horizontalGap < 0)
-                        {
-                            horizontalGap *= -1;
-                        }
+                        //int horizontalGap = (int)(item.Location.X - prereqItem.Location.X);
+                        //if (horizontalGap < 0)
+                        //{
+                        //    horizontalGap *= -1;
+                        //}
 
                         //If the item is at the same Y position, draw a single straight line
                         if (prereqItem.Location.Y == item.Location.Y)
