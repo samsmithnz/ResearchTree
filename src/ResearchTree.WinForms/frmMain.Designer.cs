@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnHideButtons = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1249, 670);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(374, 40);
-            this.comboBox1.TabIndex = 11;
             // 
             // btnHideButtons
             // 
             this.btnHideButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHideButtons.Location = new System.Drawing.Point(1473, 618);
+            this.btnHideButtons.Location = new System.Drawing.Point(1473, 664);
             this.btnHideButtons.Name = "btnHideButtons";
             this.btnHideButtons.Size = new System.Drawing.Size(150, 46);
             this.btnHideButtons.TabIndex = 12;
@@ -58,15 +48,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1635, 722);
             this.Controls.Add(this.btnHideButtons);
-            this.Controls.Add(this.comboBox1);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "Research Tree WinForms example";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private ComboBox comboBox1;
         private Button btnHideButtons;
     }
 }
