@@ -15,8 +15,7 @@ namespace ResearchTree.Tests
         public void ResearchItemsAreActiveTest()
         {
             //Arrange
-            List<ResearchItem> items = ResearchPool.BuildDemoList();
-            ResearchController controller = new(items);
+            ResearchController controller = new(ResearchPool.BuildDemoList());
 
             //Act
             List<ResearchItem> results = controller.GetAvailableResearchItems();
@@ -30,8 +29,7 @@ namespace ResearchTree.Tests
         public void ResearchItemsAreCompletedTest()
         {
             //Arrange
-            List<ResearchItem> items = ResearchPool.BuildDemoList();
-            ResearchController controller = new(items);
+            ResearchController controller = new(ResearchPool.BuildDemoList());
 
             //Act
             List<ResearchItem> results = controller.GetCompletedResearchItems();
@@ -45,8 +43,7 @@ namespace ResearchTree.Tests
         public void ResearchItemsPositionTest()
         {
             //Arrange
-            List<ResearchItem> items = ResearchPool.BuildDemoList();
-            ResearchController controller = new(items);
+            ResearchController controller = new(ResearchPool.BuildDemoList());
 
             //Act
             foreach (ResearchItem item in controller.ResearchItems)

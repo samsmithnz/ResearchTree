@@ -9,12 +9,11 @@ namespace ResearchTree.WinForms
         {
             InitializeComponent();
 
-            List<ResearchItem> items = ResearchPool.BuildDemoList();
-            ResearchController controller = new(items,
+            ResearchController controller = new(ResearchPool.BuildDemoList(),
                 162, 100,
                 81, 50);
 
-            foreach (ResearchItem item in items)
+            foreach (ResearchItem item in controller.ResearchItems)
             {
                 //Draw the nodes
                 Button button = new();
