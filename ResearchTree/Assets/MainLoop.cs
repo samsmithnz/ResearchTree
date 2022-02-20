@@ -15,7 +15,7 @@ public class MainLoop : MonoBehaviour
     {
         List<ResearchItem> items = ResearchPool.BuildDemoList();
         ResearchController controller = new ResearchController(items,
-            16, 10,
+            10, 10,
             8, 5);
 
         //Draw the nodes
@@ -72,18 +72,18 @@ public class MainLoop : MonoBehaviour
                 //this.Controls.Add(line);
 
                 //create a line renderer
-                GameObject lineCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                GameObject lineCube = new GameObject();
                 lineCube.name = item.Name + "prereq_line_" + i.ToString();
-                lineCube.transform.position = Vector3.one;
-                lineCube.transform.localScale = Vector3.one;
+                lineCube.transform.position = Vector3.zero;
+                lineCube.transform.localScale = new Vector3(controller.ItemWidth, controller.ItemHeight, 1);
 
                 LineRenderer wayPointLine = lineCube.AddComponent<LineRenderer>();
                 wayPointLine.startWidth = 1f;
                 wayPointLine.endWidth = 1f;
-                wayPointLine.SetPosition(0, new Vector3(edge.Item1.X, edge.Item1.Y, edge.Item1.Z));
-                wayPointLine.SetPosition(1, new Vector3(edge.Item2.X, edge.Item2.Y, edge.Item2.Z));
-                //Utility.LogWithTimeWarning("Drawing line from " + source.ToString() + " to " + destination.ToString());
-                wayPointLine.material.color = Color.blue;
+                wayPointLine.SetPosition(0, new Vector3(edge.Item1.X, edge.Item1.Y, -1f));//edge.Item1.Z));
+                wayPointLine.SetPosition(1, new Vector3(edge.Item2.X, edge.Item2.Y, -1f));//edge.Item2.Z));
+                Debug.Log("Drawing line for " + item.Name + " from " + edge.Item1.ToString() + " to " + edge.Item2.ToString());
+                wayPointLine.material.color = Color.white;
                 //= LineMaterial;
                 //if (movementCost <= 1)
                 //{
