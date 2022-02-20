@@ -51,7 +51,7 @@ namespace ResearchTree
             for (int i = items.Count - 1; i >= 0; i--)
             {
                 ResearchItem item = items[i];
-                //Horizontal locaiton is the width buffer + the width of the item, based on the level
+                //Horizontal locaton is the width buffer + the width of the item, based on the level
                 float x = (itemWidthBuffer * item.Level) + (item.Width * (item.Level - 1));
                 float y = (itemHeightBuffer * levelCounts[item.Level]) + (item.Height * (levelCounts[item.Level] - 1));
                 levelCounts[item.Level]--;
