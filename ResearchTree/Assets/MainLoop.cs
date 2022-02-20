@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ResearchTree;
 using ResearchTree.Models;
+using System;
 
 public class MainLoop : MonoBehaviour
 {
@@ -22,12 +23,65 @@ public class MainLoop : MonoBehaviour
             cube.transform.position = new Vector3(item.Location.X, item.Location.Y, item.Location.Z);
             cube.transform.localScale = new Vector3(controller.ItemWidth, controller.ItemHeight, 1);
 
-            //Button button = new();
-            //button.Text = item.Name;
-            //button.Location = new Point((int)item.Location.X, (int)item.Location.Y);
-            //button.Width = item.Width;
-            //button.Height = item.Height;
-            //this.Controls.Add(button);
+            int i = 0;
+            foreach (Tuple<System.Numerics.Vector3, System.Numerics.Vector3> edge in item.Edges)
+            {
+                i++;
+                //Label line = new();
+                //line.Name = item.Name + "prereq_line_" + i.ToString();
+                //line.BorderStyle = BorderStyle.FixedSingle;
+                int width = 2;
+                int height = 2;
+                if (edge.Item1.X != edge.Item2.X)
+                {
+                    width = (int)edge.Item2.X - (int)edge.Item1.X;
+                }
+                if (width < 0)
+                {
+                    width *= -1;
+                }
+                if (edge.Item1.Y != edge.Item2.Y)
+                {
+                    height = (int)edge.Item2.Y - (int)edge.Item1.Y;
+                }
+                if (height < 0)
+                {
+                    height *= -1;
+                }
+                //line.Size = new Size(width, height);
+                //if (edge.Item1.Y <= edge.Item2.Y)
+                //{
+                //    line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y);
+                //}
+                //else
+                //{
+                //    line.Location = new Point((int)edge.Item2.X, (int)edge.Item2.Y);
+                //}
+                //this.Controls.Add(line);
+
+                //create a line renderer
+                GameObject lineCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                lineCube.name = item.Name + "prereq_line_" + i.ToString();
+                lineCube.transform.position = Vector3.one;
+                lineCube.transform.localScale = Vector3.one;
+
+                LineRenderer wayPointLine = lineCube.AddComponent<LineRenderer>();
+                wayPointLine.startWidth = 1f;
+                wayPointLine.endWidth = 1f;
+                wayPointLine.SetPosition(0, new Vector3(edge.Item1.X, edge.Item1.Y, edge.Item1.Z));
+                wayPointLine.SetPosition(1, new Vector3(edge.Item2.X, edge.Item2.Y, edge.Item2.Z));
+                //Utility.LogWithTimeWarning("Drawing line from " + source.ToString() + " to " + destination.ToString());
+                wayPointLine.material.color = Color.blue;
+                //= LineMaterial;
+                //if (movementCost <= 1)
+                //{
+                //    wayPointLine.material.color = Color.blue;
+                //}
+                //else
+                //{
+                //    wayPointLine.material.color = Colors.Names["boldorange"];
+                //}
+            }
         }
     }
 
