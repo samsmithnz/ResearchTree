@@ -4,9 +4,12 @@ using UnityEngine;
 using ResearchTree;
 using ResearchTree.Models;
 using System;
+using UnityEngine.UI;
 
 public class MainLoop : MonoBehaviour
 {
+    public GameObject CanvasPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,15 @@ public class MainLoop : MonoBehaviour
             cube.name = item.Name;
             cube.transform.position = new Vector3(item.Location.X, item.Location.Y, item.Location.Z);
             cube.transform.localScale = new Vector3(controller.ItemWidth, controller.ItemHeight, 1);
+
+            GameObject cubeCanvas = GameObject.Instantiate(CanvasPrefab);
+            cubeCanvas.transform.SetParent(cube.transform);
+            cubeCanvas.transform.localPosition = new Vector3(0f, 0f, -1f);
+            cubeCanvas.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            cubeCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
+            cubeCanvas.GetComponent<CanvasScaler>().dynamicPixelsPerUnit = 1;
+            Transform textTransform = cubeCanvas.transform.GetChild(0);
+            textTransform.GetComponent<Text>().text = item.Name;
 
             int i = 0;
             foreach (Tuple<System.Numerics.Vector3, System.Numerics.Vector3> edge in item.Edges)
