@@ -66,7 +66,7 @@ namespace ResearchTree
                 {
                     foreach (string prereq in item.PreReqs)
                     {
-                        ResearchItem prereqItem = FindItem(prereq);
+                        ResearchItem prereqItem = FindItem(items, prereq);
                         int horizontalGap = (int)(item.Location.X - prereqItem.Location.X);
                         if (horizontalGap < 0)
                         {
@@ -81,26 +81,52 @@ namespace ResearchTree
                             item.Edges.Add(new Tuple<Vector3, Vector3>(
                                 new Vector3(x1, y1, 0f),
                                 new Vector3(x1 + itemWidthBuffer, y1, 0f)
-                               ));
+                            ));
                         }
                         else //if (prereqItem.Name == "D")
                         {
-                            ////We need to add two half horizontal lines, and a vertical line
+                            //We need to add two half horizontal lines, and a vertical line
+                            int x1 = (int)prereqItem.Location.X + prereqItem.Width;
+                            int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
+                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                                new Vector3(x1, y1, 0f),
+                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f)
+                            ));
+
+                            int x2 = (int)item.Location.X - (ItemWidthBuffer / 2);
+                            int y2 = (int)item.Location.Y + ItemHeightBuffer;
+                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                                new Vector3(x2, y2, 0f),
+                                new Vector3(item.Location.X, y2, 0f)
+                            ));
+
+                            //int x3 = (int)item.Location.X - (ItemWidthBuffer / 2);
+                            //int y3 = (int)prereqItem.Location.Y + ItemHeightBuffer;
+                            //int verticalLineHeight = (int)item.Location.Y - (int)prereqItem.Location.Y;
+                            //if (prereqItem.Location.Y > item.Location.Y)
+                            //{
+                            //    verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
+                            //}
+                            item.Edges.Add(new Tuple<Vector3, Vector3>(
+                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f),
+                                new Vector3(x2, y2, 0f)
+                            ));
+
                             //Label horizontalLine1 = new();
                             //horizontalLine1.Name = prereqItem.Name + "_Label1";
                             //horizontalLine1.BorderStyle = BorderStyle.FixedSingle;
-                            //horizontalLine1.Size = new Size(horizontalGap - prereqItem.Width - (horizontalBuffer / 2), 2);
+                            //horizontalLine1.Size = new Size(horizontalGap - prereqItem.Width - (ItemHeightBuffer / 2), 2);
                             //int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            //int y1 = (int)prereqItem.Location.Y + verticalBuffer;
+                            //int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
                             //horizontalLine1.Location = new Point(x1, y1);
                             //this.Controls.Add(horizontalLine1);
 
                             //Label horizontalLine2 = new();
                             //horizontalLine2.Name = prereqItem.Name + "_Label2";
                             //horizontalLine2.BorderStyle = BorderStyle.FixedSingle;
-                            //horizontalLine2.Size = new Size(horizontalBuffer / 2, 2);
-                            //int x2 = (int)item.Location.X - (horizontalBuffer / 2);
-                            //int y2 = (int)item.Location.Y + verticalBuffer;
+                            //horizontalLine2.Size = new Size(ItemHeightBuffer / 2, 2);
+                            //int x2 = (int)item.Location.X - (ItemHeightBuffer / 2);
+                            //int y2 = (int)item.Location.Y + ItemHeightBuffer;
                             //horizontalLine2.Location = new Point(x2, y2);
                             //this.Controls.Add(horizontalLine2);
 
@@ -113,11 +139,11 @@ namespace ResearchTree
                             //    verticalLineHeight = (int)prereqItem.Location.Y - (int)item.Location.Y;
                             //}
                             //vecticalLine3.Size = new Size(2, verticalLineHeight);
-                            //int x3 = (int)item.Location.X - (horizontalBuffer / 2);
-                            //int y3 = (int)prereqItem.Location.Y + verticalBuffer;
+                            //int x3 = (int)item.Location.X - (ItemHeightBuffer / 2);
+                            //int y3 = (int)prereqItem.Location.Y + ItemHeightBuffer;
                             //if (prereqItem.Location.Y > item.Location.Y)
                             //{
-                            //    y3 -= ((int)prereqItem.Location.Y - item.Height) + verticalBuffer;
+                            //    y3 -= ((int)prereqItem.Location.Y - item.Height) + ItemHeightBuffer;
                             //}
                             //vecticalLine3.Location = new Point(x3, y3);
                             //this.Controls.Add(vecticalLine3);
@@ -183,9 +209,9 @@ namespace ResearchTree
             return filteredItems;
         }
 
-        public ResearchItem FindItem(string name)
+        public ResearchItem FindItem(List<ResearchItem> items, string name)
         {
-            foreach (ResearchItem item in ResearchItems)
+            foreach (ResearchItem item in items)
             {
                 if (item.Name == name)
                 {
