@@ -46,8 +46,7 @@ namespace ResearchTree
 
             //TODO: Now look at pre-reqs. How many parents does each item have. Center these vertically as appropriate
 
-            //Now place the squares
-            //If we go backwards here, we build the list in the order that it's created
+            //Now place the squares. If we go backwards here, we build the list in the order that it's created
             for (int i = items.Count - 1; i >= 0; i--)
             {
                 ResearchItem item = items[i];
