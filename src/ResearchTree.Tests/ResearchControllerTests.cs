@@ -123,7 +123,7 @@ namespace ResearchTree.Tests
                 totalEdges += item.Edges.Count;
             }
             Assert.AreEqual(20, totalEdges);
-        
+
         }
 
         [TestMethod]
