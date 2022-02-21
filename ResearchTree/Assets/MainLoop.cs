@@ -16,7 +16,7 @@ public class MainLoop : MonoBehaviour
         List<ResearchItem> items = ResearchPool.BuildDemoList();
         ResearchController controller = new ResearchController(items,
             10, 10,
-            8, 5);
+            5, 5);
 
         //Draw the nodes
         foreach (ResearchItem item in items)
