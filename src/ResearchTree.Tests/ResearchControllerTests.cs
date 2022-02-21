@@ -95,10 +95,21 @@ namespace ResearchTree.Tests
             Assert.AreEqual(new Vector3(175, 100, 0), controller.ResearchItems[3].Edges[2].Item1);
             Assert.AreEqual(new Vector3(175, 400, 0), controller.ResearchItems[3].Edges[2].Item2);
 
-            ////Third Level
-            //Assert.IsNotNull(controller.ResearchItems[4]);
-            //Assert.AreEqual("E", controller.ResearchItems[4].Name);
-            //Assert.AreEqual(3, controller.ResearchItems[4].Level);
+            //Third Level
+            Assert.IsNotNull(controller.ResearchItems[4]);
+            Assert.AreEqual("E", controller.ResearchItems[4].Name);
+            Assert.AreEqual(3, controller.ResearchItems[4].Level);
+            Assert.AreEqual(new Vector3(400, 100, 0), controller.ResearchItems[4].Location);
+            Assert.AreEqual(4, controller.ResearchItems[4].Edges.Count);
+            Assert.AreEqual(new Vector3(250, 100, 0), controller.ResearchItems[4].Edges[0].Item1);
+            Assert.AreEqual(new Vector3(400, 100, 0), controller.ResearchItems[4].Edges[0].Item2);
+
+            Assert.AreEqual(new Vector3(250, 250, 0), controller.ResearchItems[4].Edges[1].Item1);
+            Assert.AreEqual(new Vector3(325, 250, 0), controller.ResearchItems[4].Edges[1].Item2);
+            Assert.AreEqual(new Vector3(325, 100, 0), controller.ResearchItems[4].Edges[2].Item1);
+            Assert.AreEqual(new Vector3(400, 100, 0), controller.ResearchItems[4].Edges[2].Item2);
+            Assert.AreEqual(new Vector3(325, 100, 0), controller.ResearchItems[4].Edges[3].Item1);
+            Assert.AreEqual(new Vector3(325, 250, 0), controller.ResearchItems[4].Edges[3].Item2);
 
             ////Fourth Level
             //Assert.IsNotNull(controller.ResearchItems[5]);

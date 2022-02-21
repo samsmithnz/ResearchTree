@@ -18,7 +18,7 @@ namespace ResearchTree.WinForms
                 //Draw the nodes
                 Button button = new();
                 button.Text = item.Name;
-                button.Location = new Point((int)item.Location.X, (int)item.Location.Y);
+                button.Location = new Point((int)item.Location.X - (item.Width / 2), (int)item.Location.Y - (item.Height / 2));
                 button.Width = item.Width;
                 button.Height = item.Height;
                 button.Click += (s, e) => { MessageBox.Show(button.Location.ToString()); };
@@ -72,11 +72,11 @@ namespace ResearchTree.WinForms
             {
                 if (control.GetType() == typeof(Button))
                 {
-                    control.SendToBack();
+                    control.BringToFront();
                 }
                 else
                 {
-                    control.BringToFront();
+                    control.SendToBack();
                 }
             }
         }

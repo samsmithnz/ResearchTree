@@ -68,7 +68,7 @@ namespace ResearchTree
                         //If the item is at the same Y position, draw a single straight line
                         if (prereqItem.Location.Y == item.Location.Y)
                         {
-                            Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple1 = CreateTuple(
                                 new Vector3(prereqItem.Location.X, prereqItem.Location.Y, 0f),
                                 new Vector3(item.Location.X, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple1) == false)
@@ -76,28 +76,30 @@ namespace ResearchTree
                                 item.Edges.Add(tuple1);
                             }
                         }
-                        else 
+                        else
                         {
+                            int xMidpoint = (int)(item.Location.X - (prereqItem.Width / 2) - (ItemWidthBuffer / 2));
+
                             //We need to add two half horizontal lines, and a vertical line
-                            Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
+                            Tuple<Vector3, Vector3> tuple1 = CreateTuple(
                                 new Vector3(prereqItem.Location.X, prereqItem.Location.Y, 0f),
-                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), prereqItem.Location.Y, 0f));
+                                new Vector3(xMidpoint, prereqItem.Location.Y, 0f));
                             if (item.Edges.Contains(tuple1) == false)
                             {
                                 item.Edges.Add(tuple1);
                             }
 
-                            Tuple<Vector3, Vector3> tuple2 = new Tuple<Vector3, Vector3>(
-                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), item.Location.Y, 0f),
+                            Tuple<Vector3, Vector3> tuple2 = CreateTuple(
+                                new Vector3(xMidpoint, item.Location.Y, 0f),
                                 new Vector3(item.Location.X, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple2) == false)
                             {
                                 item.Edges.Add(tuple2);
                             }
 
-                            Tuple<Vector3, Vector3> tuple3 = new Tuple<Vector3, Vector3>(
-                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), prereqItem.Location.Y, 0f),
-                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), item.Location.Y, 0f));
+                            Tuple<Vector3, Vector3> tuple3 = CreateTuple(
+                                new Vector3(xMidpoint, prereqItem.Location.Y, 0f),
+                                new Vector3(xMidpoint, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple3) == false)
                             {
                                 item.Edges.Add(tuple3);
@@ -108,6 +110,21 @@ namespace ResearchTree
             }
 
             ResearchItems = items;
+        }
+
+        //Attempt to order the vectors, so that the top left one is first.
+        private Tuple<Vector3, Vector3> CreateTuple(Vector3 pos1, Vector3 pos2)
+        {
+            Tuple<Vector3, Vector3> edge;
+            if (pos1.X <= pos2.X && pos1.Y <= pos2.Y)
+            {
+                edge = new Tuple<Vector3, Vector3>(pos1, pos2);
+            }
+            else
+            {
+                edge = new Tuple<Vector3, Vector3>(pos2, pos1);
+            }
+            return edge; ;
         }
 
         private void UpdateChildrenLevel(List<ResearchItem> items, string parent, int parentLevel)

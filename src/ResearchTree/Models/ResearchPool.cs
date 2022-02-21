@@ -13,7 +13,7 @@ namespace ResearchTree.Models
                 ResearchPool.CreateB(),
                 ResearchPool.CreateC(),
                 ResearchPool.CreateD(),
-                //ResearchPool.CreateE(),
+                ResearchPool.CreateE(),
                 //ResearchPool.CreateF(),
                 //ResearchPool.CreateG(),
                 //ResearchPool.CreateH(),
