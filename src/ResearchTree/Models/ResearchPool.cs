@@ -14,9 +14,9 @@ namespace ResearchTree.Models
                 ResearchPool.CreateC(),
                 ResearchPool.CreateD(),
                 ResearchPool.CreateE(),
-                //ResearchPool.CreateF(),
-                //ResearchPool.CreateG(),
-                //ResearchPool.CreateH(),
+                ResearchPool.CreateF(),
+                ResearchPool.CreateG(),
+                ResearchPool.CreateH(),
                 //ResearchPool.CreateI(),
                 //ResearchPool.CreateJ(),
                 //ResearchPool.CreateK()
