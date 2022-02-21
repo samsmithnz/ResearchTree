@@ -10,8 +10,8 @@ namespace ResearchTree.WinForms
             InitializeComponent();
 
             ResearchController controller = new(ResearchPool.BuildDemoList(),
-                162, 100,
-                81, 50);
+                100, 100,//162, 100,
+                50, 50);// 81, 50);
 
             foreach (ResearchItem item in controller.ResearchItems)
             {
@@ -21,6 +21,7 @@ namespace ResearchTree.WinForms
                 button.Location = new Point((int)item.Location.X, (int)item.Location.Y);
                 button.Width = item.Width;
                 button.Height = item.Height;
+                button.Click += (s, e) => { MessageBox.Show(button.Location.ToString()); };
                 this.Controls.Add(button);
 
                 //Now draw the lines between the nodes
@@ -52,11 +53,11 @@ namespace ResearchTree.WinForms
                     line.Size = new Size(width, height);
                     if (edge.Item1.Y <= edge.Item2.Y)
                     {
-                        line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y);
+                        line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y + (item.Height / 2));
                     }
                     else
                     {
-                        line.Location = new Point((int)edge.Item2.X, (int)edge.Item2.Y);
+                        line.Location = new Point((int)edge.Item2.X, (int)edge.Item2.Y + (item.Height / 2));
                     }
                     this.Controls.Add(line);
                 }
@@ -85,5 +86,6 @@ namespace ResearchTree.WinForms
                 }
             }
         }
+
     }
 }

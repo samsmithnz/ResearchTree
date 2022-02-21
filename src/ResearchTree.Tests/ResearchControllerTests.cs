@@ -139,17 +139,17 @@ namespace ResearchTree.Tests
             Assert.IsNotNull(controller.ResearchItems[0]);
             Assert.AreEqual("A", controller.ResearchItems[0].Name);
             Assert.AreEqual(1, controller.ResearchItems[0].Level);
-            Assert.AreEqual(new Vector3(100, 100, 0), controller.ResearchItems[0].Location);
+            Assert.AreEqual(new Vector3(10, 10, 0), controller.ResearchItems[0].Location);
             Assert.AreEqual(0, controller.ResearchItems[0].Edges.Count);
 
             //Second Level
             Assert.IsNotNull(controller.ResearchItems[1]);
             Assert.AreEqual("B", controller.ResearchItems[1].Name);
             Assert.AreEqual(2, controller.ResearchItems[1].Level);
-            Assert.AreEqual(new Vector3(250, 100, 0), controller.ResearchItems[1].Location);
+            Assert.AreEqual(new Vector3(25, 10, 0), controller.ResearchItems[1].Location);
             Assert.AreEqual(1, controller.ResearchItems[1].Edges.Count);
-            Assert.AreEqual(new Vector3(200, 150, 0), controller.ResearchItems[1].Edges[0].Item1);
-            Assert.AreEqual(new Vector3(250, 150, 0), controller.ResearchItems[1].Edges[0].Item2);
+            Assert.AreEqual(new Vector3(10, 10, 0), controller.ResearchItems[1].Edges[0].Item1);
+            Assert.AreEqual(new Vector3(25, 10, 0), controller.ResearchItems[1].Edges[0].Item2);
         }
 
         [TestMethod]

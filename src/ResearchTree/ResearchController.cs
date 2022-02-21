@@ -68,11 +68,11 @@ namespace ResearchTree
                         //If the item is at the same Y position, draw a single straight line
                         if (prereqItem.Location.Y == item.Location.Y)
                         {
-                            int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
+                            int x1 = (int)prereqItem.Location.X;// + prereqItem.Width;
+                            int y1 = (int)prereqItem.Location.Y;// + ItemHeightBuffer;
                             Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
                                 new Vector3(x1, y1, 0f),
-                                new Vector3(x1 + itemWidthBuffer, y1, 0f));
+                                new Vector3(item.Location.X, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple1) == false)
                             {
                                 item.Edges.Add(tuple1);
@@ -81,8 +81,8 @@ namespace ResearchTree
                         else //if (prereqItem.Name == "D")
                         {
                             //We need to add two half horizontal lines, and a vertical line
-                            int x1 = (int)prereqItem.Location.X + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y + ItemHeightBuffer;
+                            int x1 = (int)prereqItem.Location.X;// + prereqItem.Width;
+                            int y1 = (int)prereqItem.Location.Y;// + ItemHeightBuffer;
                             Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
                                 new Vector3(x1, y1, 0f),
                                 new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f));
