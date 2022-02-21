@@ -68,8 +68,8 @@ namespace ResearchTree.Tests
             Assert.AreEqual(2, controller.ResearchItems[1].Level);
             Assert.AreEqual(new Vector3(250, 100, 0), controller.ResearchItems[1].Location);
             Assert.AreEqual(1, controller.ResearchItems[1].Edges.Count);
-            Assert.AreEqual(new Vector3(200, 150, 0), controller.ResearchItems[1].Edges[0].Item1);
-            Assert.AreEqual(new Vector3(250, 150, 0), controller.ResearchItems[1].Edges[0].Item2);
+            Assert.AreEqual(new Vector3(100, 100, 0), controller.ResearchItems[1].Edges[0].Item1);
+            Assert.AreEqual(new Vector3(250, 100, 0), controller.ResearchItems[1].Edges[0].Item2);
 
             Assert.IsNotNull(controller.ResearchItems[2]);
             Assert.AreEqual("C", controller.ResearchItems[2].Name);
@@ -102,15 +102,15 @@ namespace ResearchTree.Tests
             Assert.AreEqual(5, controller.ResearchItems[7].Level);
             Assert.AreEqual(new Vector3(700, 100, 0), controller.ResearchItems[7].Location);
             Assert.AreEqual(5, controller.ResearchItems[7].Edges.Count);
-            Assert.AreEqual(new Vector3(650, 300, 0), controller.ResearchItems[7].Edges[0].Item1);
-            Assert.AreEqual(new Vector3(675, 300, 0), controller.ResearchItems[7].Edges[0].Item2);
+            Assert.AreEqual(new Vector3(550, 250, 0), controller.ResearchItems[7].Edges[0].Item1);
+            Assert.AreEqual(new Vector3(675, 250, 0), controller.ResearchItems[7].Edges[0].Item2);
             Assert.AreEqual(new Vector3(675, 150, 0), controller.ResearchItems[7].Edges[1].Item1);
             Assert.AreEqual(new Vector3(700, 150, 0), controller.ResearchItems[7].Edges[1].Item2);
-            Assert.AreEqual(new Vector3(675, 300, 0), controller.ResearchItems[7].Edges[2].Item1);
+            Assert.AreEqual(new Vector3(675, 250, 0), controller.ResearchItems[7].Edges[2].Item1);
             Assert.AreEqual(new Vector3(675, 150, 0), controller.ResearchItems[7].Edges[2].Item2);
-            Assert.AreEqual(new Vector3(350, 450, 0), controller.ResearchItems[7].Edges[3].Item1);
-            Assert.AreEqual(new Vector3(675, 450, 0), controller.ResearchItems[7].Edges[3].Item2);
-            Assert.AreEqual(new Vector3(675, 450, 0), controller.ResearchItems[7].Edges[4].Item1);
+            Assert.AreEqual(new Vector3(250, 400, 0), controller.ResearchItems[7].Edges[3].Item1);
+            Assert.AreEqual(new Vector3(675, 400, 0), controller.ResearchItems[7].Edges[3].Item2);
+            Assert.AreEqual(new Vector3(675, 400, 0), controller.ResearchItems[7].Edges[4].Item1);
             Assert.AreEqual(new Vector3(675, 150, 0), controller.ResearchItems[7].Edges[4].Item2);
 
             //Check the number of edges
