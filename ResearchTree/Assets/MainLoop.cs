@@ -15,8 +15,8 @@ public class MainLoop : MonoBehaviour
     {
         List<ResearchItem> items = ResearchPool.BuildDemoList();
         ResearchController controller = new ResearchController(items,
-            10, 10,
-            5, 5);
+            16, 10,
+            8, 5);
 
         //Draw the nodes
         foreach (ResearchItem item in items)
@@ -80,8 +80,8 @@ public class MainLoop : MonoBehaviour
                 LineRenderer wayPointLine = lineCube.AddComponent<LineRenderer>();
                 wayPointLine.startWidth = 1f;
                 wayPointLine.endWidth = 1f;
-                wayPointLine.SetPosition(0, new Vector3(edge.Item1.X, edge.Item1.Y, -1f));//edge.Item1.Z));
-                wayPointLine.SetPosition(1, new Vector3(edge.Item2.X, edge.Item2.Y, -1f));//edge.Item2.Z));
+                wayPointLine.SetPosition(0, new Vector3(edge.Item1.X, edge.Item1.Y, edge.Item1.Z));
+                wayPointLine.SetPosition(1, new Vector3(edge.Item2.X, edge.Item2.Y, edge.Item2.Z));
                 Debug.Log("Drawing line for " + item.Name + " from " + edge.Item1.ToString() + " to " + edge.Item2.ToString());
                 wayPointLine.material.color = Color.white;
                 //= LineMaterial;
