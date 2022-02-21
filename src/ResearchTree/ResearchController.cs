@@ -68,42 +68,36 @@ namespace ResearchTree
                         //If the item is at the same Y position, draw a single straight line
                         if (prereqItem.Location.Y == item.Location.Y)
                         {
-                            int x1 = (int)prereqItem.Location.X;// + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y;// + ItemHeightBuffer;
                             Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
-                                new Vector3(x1, y1, 0f),
+                                new Vector3(prereqItem.Location.X, prereqItem.Location.Y, 0f),
                                 new Vector3(item.Location.X, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple1) == false)
                             {
                                 item.Edges.Add(tuple1);
                             }
                         }
-                        else //if (prereqItem.Name == "D")
+                        else 
                         {
                             //We need to add two half horizontal lines, and a vertical line
-                            int x1 = (int)prereqItem.Location.X;// + prereqItem.Width;
-                            int y1 = (int)prereqItem.Location.Y;// + ItemHeightBuffer;
                             Tuple<Vector3, Vector3> tuple1 = new Tuple<Vector3, Vector3>(
-                                new Vector3(x1, y1, 0f),
-                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f));
+                                new Vector3(prereqItem.Location.X, prereqItem.Location.Y, 0f),
+                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), prereqItem.Location.Y, 0f));
                             if (item.Edges.Contains(tuple1) == false)
                             {
                                 item.Edges.Add(tuple1);
                             }
 
-                            int x2 = (int)item.Location.X - (ItemWidthBuffer / 2);
-                            int y2 = (int)item.Location.Y + ItemHeightBuffer;
                             Tuple<Vector3, Vector3> tuple2 = new Tuple<Vector3, Vector3>(
-                                new Vector3(x2, y2, 0f),
-                                new Vector3(item.Location.X, y2, 0f));
+                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), item.Location.Y, 0f),
+                                new Vector3(item.Location.X, item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple2) == false)
                             {
                                 item.Edges.Add(tuple2);
                             }
 
                             Tuple<Vector3, Vector3> tuple3 = new Tuple<Vector3, Vector3>(
-                                new Vector3(item.Location.X - (ItemWidthBuffer / 2), y1, 0f),
-                                new Vector3(x2, y2, 0f));
+                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), prereqItem.Location.Y, 0f),
+                                new Vector3(item.Location.X - prereqItem.Location.X + (ItemWidthBuffer / 2), item.Location.Y, 0f));
                             if (item.Edges.Contains(tuple3) == false)
                             {
                                 item.Edges.Add(tuple3);

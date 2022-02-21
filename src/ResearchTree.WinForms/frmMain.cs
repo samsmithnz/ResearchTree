@@ -51,14 +51,19 @@ namespace ResearchTree.WinForms
                         height *= -1;
                     }
                     line.Size = new Size(width, height);
-                    if (edge.Item1.Y <= edge.Item2.Y)
-                    {
-                        line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y + (item.Height / 2));
-                    }
-                    else
-                    {
-                        line.Location = new Point((int)edge.Item2.X, (int)edge.Item2.Y + (item.Height / 2));
-                    }
+                    line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y);
+                    //if (edge.Item1.Y == edge.Item2.Y)
+                    //{
+                    //    line.Location = new Point((int)edge.Item1.X, (int)edge.Item1.Y + (item.Height / 2));
+                    //}
+                    //else if(edge.Item1.Y > edge.Item2.Y)
+                    //{
+                    //    line.Location = new Point((int)edge.Item2.X , (int)edge.Item2.Y - (item.Height / 1));
+                    //}
+                    //else if (edge.Item1.Y < edge.Item2.Y)
+                    //{
+                    //    line.Location = new Point((int)edge.Item2.X , (int)edge.Item2.Y - (item.Height / 1));
+                    //}
                     this.Controls.Add(line);
                 }
             }
