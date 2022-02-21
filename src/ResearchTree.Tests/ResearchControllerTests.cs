@@ -120,7 +120,36 @@ namespace ResearchTree.Tests
                 totalEdges += item.Edges.Count;
             }
             Assert.AreEqual(20, totalEdges);
+        }
 
+        [TestMethod]
+        public void ResearchItemsUnity3DTest()
+        {
+            //Arrange
+            ResearchController controller = new(ResearchPool.BuildDemoList(),
+                10,10,5,5);
+
+            //Act
+
+            //Assert
+            Assert.IsNotNull(controller.ResearchItems);
+            Assert.IsTrue(controller.ResearchItems.Count > 0);
+
+            //First Level
+            Assert.IsNotNull(controller.ResearchItems[0]);
+            Assert.AreEqual("A", controller.ResearchItems[0].Name);
+            Assert.AreEqual(1, controller.ResearchItems[0].Level);
+            Assert.AreEqual(new Vector3(100, 100, 0), controller.ResearchItems[0].Location);
+            Assert.AreEqual(0, controller.ResearchItems[0].Edges.Count);
+
+            //Second Level
+            Assert.IsNotNull(controller.ResearchItems[1]);
+            Assert.AreEqual("B", controller.ResearchItems[1].Name);
+            Assert.AreEqual(2, controller.ResearchItems[1].Level);
+            Assert.AreEqual(new Vector3(250, 100, 0), controller.ResearchItems[1].Location);
+            Assert.AreEqual(1, controller.ResearchItems[1].Edges.Count);
+            Assert.AreEqual(new Vector3(200, 150, 0), controller.ResearchItems[1].Edges[0].Item1);
+            Assert.AreEqual(new Vector3(250, 150, 0), controller.ResearchItems[1].Edges[0].Item2);
         }
 
         [TestMethod]
