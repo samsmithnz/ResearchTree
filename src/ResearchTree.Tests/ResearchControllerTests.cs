@@ -152,7 +152,7 @@ namespace ResearchTree.Tests
         {
             //Arrange
             ResearchController controller = new(ResearchPool.BuildDemoList(),
-                10,10,5,5);
+                10, 10, 5, 5);
 
             //Act
 
