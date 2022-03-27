@@ -112,6 +112,23 @@ namespace ResearchTree
             ResearchItems = items;
         }
 
+        public bool AddTick()
+        {
+            foreach (ResearchItem item in ResearchItems)
+            {
+                //If the item is active with workers assigned
+                if (item.IsComplete == false && item.WorkersAssigned > 0)
+                {
+                    item.WorkToComplete += item.WorkersAssigned;
+                    if (item.IsComplete == true)
+                    {
+                        
+                    }
+                }
+            }
+            return true;
+        }
+
         //Attempt to order the vectors, so that the top left one is first.
         private Tuple<Vector3, Vector3> CreateTuple(Vector3 pos1, Vector3 pos2)
         {
@@ -140,8 +157,6 @@ namespace ResearchTree
                 }
             }
         }
-
-
         public List<ResearchItem> GetAvailableResearchItems()
         {
             List<ResearchItem> filteredItems = new List<ResearchItem>();

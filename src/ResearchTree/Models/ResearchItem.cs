@@ -18,7 +18,23 @@ namespace ResearchTree.Models
         public string Name { get; set; }
         public List<string> PreReqs { get; set; }
         public int WorkToComplete { get; set; }
-        public int WorkCompleted { get; set; }
+        private int _workCompleted;
+        public int WorkCompleted
+        {
+            get
+            {
+                return _workCompleted;
+            }
+            set
+            {
+                _workCompleted = value;
+                if (_workCompleted >= WorkToComplete)
+                {
+                    IsComplete = true;
+                }
+            }
+        }
+        public int WorkersAssigned { get; set; }
         public bool IsComplete { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

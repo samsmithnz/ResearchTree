@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ResearchTree.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace ResearchTree.Tests
@@ -152,7 +153,7 @@ namespace ResearchTree.Tests
         {
             //Arrange
             ResearchController controller = new(ResearchPool.BuildDemoList(),
-                10,10,5,5);
+                10, 10, 5, 5);
 
             //Act
 
@@ -178,7 +179,7 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
-        public void ResearchItemsWithDuplicatesThrowException()
+        public void ResearchItemsWithDuplicatesThrowExceptionTest()
         {
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
@@ -198,7 +199,7 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
-        public void ResearchItemsWithMissingChildThrowException()
+        public void ResearchItemsWithMissingChildThrowExceptionTest()
         {
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
@@ -216,6 +217,40 @@ namespace ResearchTree.Tests
                 //Assert
                 Assert.AreEqual("Child 'X' not found", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void AddTickWithoutWorkersAssignedTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+
+            //Act            
+            controller.AddTick();
+
+            //Assert
+            Assert.AreEqual(3, itemC?.WorkCompleted);
+        }
+
+        [TestMethod]
+        public void AddTickWithWorkersAssignedTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+
+            //Act            
+            if (itemC != null)
+            {
+                itemC.WorkersAssigned = 1;
+            }
+            controller.AddTick();
+
+            //Assert
+            Assert.AreEqual(4, itemC?.WorkCompleted);
         }
 
     }
