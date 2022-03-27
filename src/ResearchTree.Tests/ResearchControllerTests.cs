@@ -268,7 +268,10 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
             ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
-            itemC.WorkCompleted = 19;
+            if (itemC != null)
+            {
+                itemC.WorkCompleted = 19;
+            }
             ResearchController controller = new(items);
 
             //Act            
