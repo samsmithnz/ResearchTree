@@ -5,15 +5,17 @@ namespace ResearchTree.WinForms
 {
     public partial class frmMain : Form
     {
+        private readonly ResearchController _controller;
+
         public frmMain()
         {
             InitializeComponent();
 
-            ResearchController controller = new(ResearchPool.BuildDemoList(),
+            _controller = new(ResearchPool.BuildDemoList(),
                 100, 100,//162, 100,
                 50, 50);// 81, 50);
 
-            foreach (ResearchItem item in controller.ResearchItems)
+            foreach (ResearchItem item in _controller.ResearchItems)
             {
                 //Draw the nodes
                 Button button = new();
@@ -79,17 +81,24 @@ namespace ResearchTree.WinForms
                     control.SendToBack();
                 }
             }
+
+            //Add workers to combo
+            AddWorkersToCombo();
         }
 
-        private void btnHideButtons_Click(object sender, EventArgs e)
+        private void btnAddTick_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.Controls)
+            _controller.AddTick();
+        }
+
+        private void AddWorkersToCombo()
+        {
+            cboWorkers.Items.Clear();
+            for (int i = 1; i <= 5; i++)
             {
-                if (typeof(Button) == item.GetType())
-                {
-                    item.Visible = false;
-                }
+                cboWorkers.Items.Add(i.ToString() + " workers");
             }
+            cboWorkers.SelectedIndex = 0;
         }
 
     }
