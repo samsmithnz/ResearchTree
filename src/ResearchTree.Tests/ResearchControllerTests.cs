@@ -233,6 +233,7 @@ namespace ResearchTree.Tests
             //Assert
             itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(3, itemC?.WorkCompleted);
+            Assert.IsFalse(itemC?.IsComplete);
         }
 
         [TestMethod]
@@ -253,6 +254,29 @@ namespace ResearchTree.Tests
             //Assert
             itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(4, itemC?.WorkCompleted);
+            Assert.IsFalse(itemC?.IsComplete);
+        }
+
+        [TestMethod]
+        public void AddTickWithWorkersAssignedUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            itemC.WorkCompleted = 19;
+            ResearchController controller = new(items);
+
+            //Act            
+            if (itemC != null)
+            {
+                itemC.WorkersAssigned = 1;
+            }
+            controller.AddTick();
+
+            //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
         }
 
     }
