@@ -255,6 +255,11 @@ namespace ResearchTree.Tests
             itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(4, itemC?.WorkCompleted);
             Assert.IsFalse(itemC?.IsComplete);
+
+            //Check that ItemE is not enabled as C is not finished.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNull(itemE);
         }
 
         [TestMethod]
@@ -277,6 +282,11 @@ namespace ResearchTree.Tests
             itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(20, itemC?.WorkCompleted);
             Assert.IsTrue(itemC?.IsComplete);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
         }
 
     }
