@@ -119,10 +119,12 @@ namespace ResearchTree
                 //If the item is active with workers assigned
                 if (item.IsComplete == false && item.WorkersAssigned > 0)
                 {
-                    item.WorkToComplete += item.WorkersAssigned;
-                    if (item.IsComplete == true)
+                    //Increment the work done
+                    item.WorkCompleted += item.WorkersAssigned;
+                    //If the work is completed, mark the research as done!
+                    if (item.WorkCompleted == item.WorkToComplete && item.IsComplete == false)
                     {
-                        
+                        item.IsComplete = true;
                     }
                 }
             }

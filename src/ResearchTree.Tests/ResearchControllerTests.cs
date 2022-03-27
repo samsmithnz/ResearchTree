@@ -231,6 +231,7 @@ namespace ResearchTree.Tests
             controller.AddTick();
 
             //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(3, itemC?.WorkCompleted);
         }
 
@@ -250,6 +251,7 @@ namespace ResearchTree.Tests
             controller.AddTick();
 
             //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             Assert.AreEqual(4, itemC?.WorkCompleted);
         }
 
