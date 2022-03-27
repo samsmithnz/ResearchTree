@@ -31,6 +31,7 @@ namespace ResearchTree.Models
                 if (_workCompleted >= WorkToComplete)
                 {
                     IsComplete = true;
+                    WorkersAssigned = 0;
                 }
             }
         }

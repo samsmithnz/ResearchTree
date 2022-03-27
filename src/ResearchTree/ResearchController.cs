@@ -12,6 +12,7 @@ namespace ResearchTree
         public int ItemHeight { get; set; }
         public int ItemWidthBuffer { get; set; }
         public int ItemHeightBuffer { get; set; }
+        public int WorkersAvailable { get; set; }
 
         public ResearchController(List<ResearchItem> items,
             int itemWidth = 100, int itemHeight = 100,
@@ -203,7 +204,7 @@ namespace ResearchTree
             List<ResearchItem> filteredItems = new List<ResearchItem>();
             foreach (ResearchItem item in ResearchItems)
             {
-                if (item.)
+                if (item.WorkersAssigned > 0)
                 {
                     filteredItems.Add(item);
                 }
