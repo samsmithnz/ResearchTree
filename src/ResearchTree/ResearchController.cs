@@ -181,6 +181,19 @@ namespace ResearchTree
             return filteredItems;
         }
 
+        public List<ResearchItem> GetResearchItemsCurrentlyBeingWorked()
+        {
+            List<ResearchItem> filteredItems = new List<ResearchItem>();
+            foreach (ResearchItem item in ResearchItems)
+            {
+                if (item.)
+                {
+                    filteredItems.Add(item);
+                }
+            }
+            return filteredItems;
+        }
+
         public ResearchItem FindItem(List<ResearchItem> items, string name)
         {
             foreach (ResearchItem item in items)
