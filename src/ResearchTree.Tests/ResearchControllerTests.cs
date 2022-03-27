@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ResearchTree.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace ResearchTree.Tests
@@ -178,7 +179,7 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
-        public void ResearchItemsWithDuplicatesThrowException()
+        public void ResearchItemsWithDuplicatesThrowExceptionTest()
         {
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
@@ -198,7 +199,7 @@ namespace ResearchTree.Tests
         }
 
         [TestMethod]
-        public void ResearchItemsWithMissingChildThrowException()
+        public void ResearchItemsWithMissingChildThrowExceptionTest()
         {
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
@@ -216,6 +217,79 @@ namespace ResearchTree.Tests
                 //Assert
                 Assert.AreEqual("Child 'X' not found", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void AddTickWithoutWorkersAssignedTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+
+            //Act            
+            controller.AddTick();
+
+            //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            Assert.AreEqual(3, itemC?.WorkCompleted);
+            Assert.IsFalse(itemC?.IsComplete);
+        }
+
+        [TestMethod]
+        public void AddTickWithWorkersAssignedTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+
+            //Act            
+            if (itemC != null)
+            {
+                itemC.WorkersAssigned = 1;
+            }
+            controller.AddTick();
+
+            //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            Assert.AreEqual(4, itemC?.WorkCompleted);
+            Assert.IsFalse(itemC?.IsComplete);
+
+            //Check that ItemE is not enabled as C is not finished.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNull(itemE);
+        }
+
+        [TestMethod]
+        public void AddTickWithWorkersAssignedUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            if (itemC != null)
+            {
+                itemC.WorkCompleted = 19;
+            }
+            ResearchController controller = new(items);
+
+            //Act            
+            if (itemC != null)
+            {
+                itemC.WorkersAssigned = 1;
+            }
+            controller.AddTick();
+
+            //Assert
+            itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
         }
 
     }
