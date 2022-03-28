@@ -225,6 +225,7 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
             ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            itemC.WorkersAssigned = 0;
             ResearchController controller = new(items);
 
             //Act            
