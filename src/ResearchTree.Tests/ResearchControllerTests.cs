@@ -245,10 +245,6 @@ namespace ResearchTree.Tests
             ResearchController controller = new(items);
 
             //Act            
-            if (itemC != null)
-            {
-                itemC.WorkersAssigned = 1;
-            }
             controller.AddTick();
 
             //Assert
@@ -275,14 +271,36 @@ namespace ResearchTree.Tests
             ResearchController controller = new(items);
 
             //Act            
-            if (itemC != null)
-            {
-                itemC.WorkersAssigned = 1;
-            }
             controller.AddTick();
 
             //Assert
             itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
+        }
+
+        [TestMethod]
+        public void AssignResearchItemWorkersAndAddTickUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+            controller.WorkersAvailable = 1;
+
+            //Act
+            do
+            {
+                controller.AddTick();
+                itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            } while (itemC?.IsComplete == false);
+
+            //Assert
             Assert.AreEqual(20, itemC?.WorkCompleted);
             Assert.IsTrue(itemC?.IsComplete);
 

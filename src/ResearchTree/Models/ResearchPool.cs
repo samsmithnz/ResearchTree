@@ -56,6 +56,7 @@ namespace ResearchTree.Models
                 PreReqs = { "A" },
                 WorkToComplete = 20,
                 WorkCompleted = 3,
+                WorkersAssigned = 1,
                 IsComplete = false
             };
         }
