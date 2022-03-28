@@ -297,6 +297,7 @@ namespace ResearchTree.Tests
             //Act
             do
             {
+                //Add tickets until the job is done.
                 controller.AddTick();
                 itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
             } while (itemC?.IsComplete == false);
@@ -304,6 +305,48 @@ namespace ResearchTree.Tests
             //Assert
             Assert.AreEqual(20, itemC?.WorkCompleted);
             Assert.IsTrue(itemC?.IsComplete);
+            Assert.AreEqual(0, itemC?.WorkersAssigned);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
+        }
+
+        //Assign multiple workers.
+
+        [TestMethod]
+        public void AssignMultipleResearchItemWorkersAndAddTickUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items);
+            controller.WorkersAvailable = 2;
+            ResearchItem? itemB = items.Where(c => c.Name == "B").FirstOrDefault();
+            if (itemB != null)
+            {
+                itemB.WorkCompleted = 0;
+                itemB.WorkersAssigned = 1;
+                itemB.IsComplete = false;
+            }
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+
+            //Act
+            do
+            {
+                //Add tickets until the job is done.
+                controller.AddTick();
+                itemB = controller.ResearchItems.Where(c => c.Name == "B").FirstOrDefault();
+                itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            } while (itemC?.IsComplete == false || itemB?.IsComplete == false);
+
+            //Assert
+            Assert.AreEqual(5, itemB?.WorkCompleted);
+            Assert.IsTrue(itemB?.IsComplete);
+            Assert.AreEqual(0, itemB?.WorkersAssigned);
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
+            Assert.AreEqual(0, itemC?.WorkersAssigned);
 
             //Check that ItemE is enabled as C finishes.
             List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
