@@ -32,7 +32,7 @@ namespace ResearchTree.Models
                 {
                     Name = "A",
                     PreReqs = new List<string>(),
-                    WorkToComplete = 1,
+                    WorkToComplete = 5,
                     WorkersAssigned = 1
                 };
             }
@@ -81,7 +81,7 @@ namespace ResearchTree.Models
                 {
                     Name = "C",
                     PreReqs = { "A" },
-                    WorkToComplete = 20
+                    WorkToComplete = 5
                 };
             }
             else
@@ -130,7 +130,7 @@ namespace ResearchTree.Models
                 {
                     Name = "E",
                     PreReqs = { "B", "C" },
-                    WorkToComplete = 50
+                    WorkToComplete = 4
                 };
             }
             else
@@ -154,7 +154,7 @@ namespace ResearchTree.Models
                 {
                     Name = "F",
                     PreReqs = { "E" },
-                    WorkToComplete = 50
+                    WorkToComplete = 5
                 };
             }
             else
@@ -178,7 +178,7 @@ namespace ResearchTree.Models
                 {
                     Name = "G",
                     PreReqs = { "E" },
-                    WorkToComplete = 100
+                    WorkToComplete = 3
                 };
             }
             else
@@ -202,7 +202,7 @@ namespace ResearchTree.Models
                 {
                     Name = "H",
                     PreReqs = { "G", "D" },
-                    WorkToComplete = 100
+                    WorkToComplete = 4
                 };
             }
             else

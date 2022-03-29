@@ -134,7 +134,7 @@ namespace ResearchTree.WinForms
             {
                 foreach (ResearchItem? item in availableItems)
                 {
-                    lstAvailableItems.Items.Add(new ListViewItem(new string[] { item.Name }));
+                    item.WorkersAssigned += 1; // _controller.WorkersAvailable;
                 }
             }
 
@@ -145,7 +145,7 @@ namespace ResearchTree.WinForms
             {
                 foreach (ResearchItem? item in currentItems)
                 {
-                    lstCurrentItems.Items.Add(new ListViewItem(new string[] { item.Name, item.WorkCompleted.ToString() }));
+                    lstCurrentItems.Items.Add(new ListViewItem(new string[] { item.Name, item.WorkCompleted.ToString() + "/" + item.WorkToComplete.ToString() }));
                 }
             }
 
@@ -163,14 +163,14 @@ namespace ResearchTree.WinForms
             DrawGraph();
         }
 
-        private void btnStartResearch_Click(object sender, EventArgs e)
-        {
-            if (lstAvailableItems.SelectedItems.Count > 0)
-            {
-                ResearchItem item = _controller.FindItem(_controller.ResearchItems, lstAvailableItems.SelectedItems[0].Text);
-                item.WorkersAssigned += 1; // _controller.WorkersAvailable;
-                UpdateForm();
-            }
-        }
+        //private void btnStartResearch_Click(object sender, EventArgs e)
+        //{
+        //    if (lstAvailableItems.SelectedItems.Count > 0)
+        //    {
+        //        ResearchItem item = _controller.FindItem(_controller.ResearchItems, lstAvailableItems.SelectedItems[0].Text);
+        //        item.WorkersAssigned += 1; // _controller.WorkersAvailable;
+        //        UpdateForm();
+        //    }
+        //}
     }
 }

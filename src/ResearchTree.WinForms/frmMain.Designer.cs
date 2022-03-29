@@ -66,6 +66,7 @@
             // 
             this.lstAvailableItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
+            this.lstAvailableItems.Enabled = false;
             this.lstAvailableItems.FullRowSelect = true;
             this.lstAvailableItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstAvailableItems.Location = new System.Drawing.Point(40, 516);
@@ -83,13 +84,13 @@
             // btnStartResearch
             // 
             this.btnStartResearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartResearch.Enabled = false;
             this.btnStartResearch.Location = new System.Drawing.Point(288, 664);
             this.btnStartResearch.Name = "btnStartResearch";
             this.btnStartResearch.Size = new System.Drawing.Size(205, 46);
             this.btnStartResearch.TabIndex = 15;
             this.btnStartResearch.Text = "Start Research";
             this.btnStartResearch.UseVisualStyleBackColor = true;
-            this.btnStartResearch.Click += new System.EventHandler(this.btnStartResearch_Click);
             // 
             // lstCurrentItems
             // 
