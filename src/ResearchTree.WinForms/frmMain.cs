@@ -84,11 +84,13 @@ namespace ResearchTree.WinForms
 
             //Add workers to combo
             AddWorkersToCombo();
+            UpdateForm();
         }
 
         private void btnAddTick_Click(object sender, EventArgs e)
         {
             _controller.AddTick();
+            UpdateForm();
         }
 
         private void AddWorkersToCombo()
@@ -99,6 +101,32 @@ namespace ResearchTree.WinForms
                 cboWorkers.Items.Add(i.ToString() + " workers");
             }
             cboWorkers.SelectedIndex = 0;
+        }
+
+        private void UpdateForm()
+        {
+            //Get available research
+            List<ResearchItem> availableItems = _controller.GetAvailableResearchItems();
+            lstAvailableItems.Items.Clear();
+            if (availableItems != null)
+            {
+                foreach (ResearchItem? item in availableItems)
+                {
+                    lstAvailableItems.Items.Add(new ListViewItem(new string[] { item.Name }));
+                }
+            }
+
+            //Get research in progress
+            List<ResearchItem> currentItems = _controller.GetAvailableResearchItems();
+            lstCurrentItems.Items.Clear();
+            if (currentItems != null)
+            {
+                foreach (ResearchItem? item in currentItems)
+                {
+                    lstCurrentItems.Items.Add(new ListViewItem(new string[] { item.Name, item.WorkCompleted.ToString() }));
+                }
+            }
+
         }
 
     }
