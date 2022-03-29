@@ -129,5 +129,14 @@ namespace ResearchTree.WinForms
 
         }
 
+        private void btnStartResearch_Click(object sender, EventArgs e)
+        {
+            if (lstAvailableItems.SelectedItems.Count > 0)
+            {
+                ResearchItem item = _controller.FindItem(_controller.ResearchItems, lstAvailableItems.SelectedItems[0].Text);
+                item.WorkersAssigned += 1;// _controller.WorkersAvailable;
+                UpdateForm();
+            }
+        }
     }
 }
