@@ -13,13 +13,13 @@ namespace ResearchTree.Tests
     public class ResearchControllerTests
     {
         [TestMethod]
-        public void ResearchItemsAreActiveTest()
+        public void ResearchItemsAreCurrentlyWorkedTest()
         {
             //Arrange
             ResearchController controller = new(ResearchPool.BuildDemoList());
 
             //Act
-            List<ResearchItem> results = controller.GetAvailableResearchItems();
+            List<ResearchItem> results = controller.GetCurrentlyWorkedResearchItems();
 
             //Assert
             Assert.IsNotNull(results);
@@ -254,7 +254,7 @@ namespace ResearchTree.Tests
             Assert.IsFalse(itemC?.IsComplete);
 
             //Check that ItemE is not enabled as C is not finished.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNull(itemE);
         }
@@ -280,7 +280,7 @@ namespace ResearchTree.Tests
             Assert.IsTrue(itemC?.IsComplete);
 
             //Check that ItemE is enabled as C finishes.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNotNull(itemE);
         }
@@ -308,7 +308,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual(0, itemC?.WorkersAssigned);
 
             //Check that ItemE is enabled as C finishes.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNotNull(itemE);
         }
@@ -349,7 +349,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual(0, itemC?.WorkersAssigned);
 
             //Check that ItemE is enabled as C finishes.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNotNull(itemE);
         }

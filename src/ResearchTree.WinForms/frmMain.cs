@@ -106,7 +106,7 @@ namespace ResearchTree.WinForms
         private void UpdateForm()
         {
             //Get available research
-            List<ResearchItem> availableItems = _controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = _controller.GetUnstartedResearchItems();
             lstAvailableItems.Items.Clear();
             if (availableItems != null)
             {
@@ -117,7 +117,7 @@ namespace ResearchTree.WinForms
             }
 
             //Get research in progress
-            List<ResearchItem> currentItems = _controller.GetAvailableResearchItems();
+            List<ResearchItem> currentItems = _controller.GetUnstartedResearchItems();
             lstCurrentItems.Items.Clear();
             if (currentItems != null)
             {
