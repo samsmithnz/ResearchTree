@@ -41,6 +41,14 @@ namespace ResearchTree.WinForms
                 button.Height = item.Height;
                 button.Click += (s, e) => { MessageBox.Show(button.Location.ToString()); };
                 button.Tag = "Graph";
+                if (item.IsComplete)
+                {
+                    button.BackColor = Color.Green;
+                }
+                else if (item.WorkCompleted == 0)
+                {
+                    button.BackColor = Color.Gray;
+                }
                 this.Controls.Add(button);
 
                 //Now draw the lines between the nodes
@@ -160,7 +168,7 @@ namespace ResearchTree.WinForms
             if (lstAvailableItems.SelectedItems.Count > 0)
             {
                 ResearchItem item = _controller.FindItem(_controller.ResearchItems, lstAvailableItems.SelectedItems[0].Text);
-                item.WorkersAssigned += 1;// _controller.WorkersAvailable;
+                item.WorkersAssigned += 1; // _controller.WorkersAvailable;
                 UpdateForm();
             }
         }
