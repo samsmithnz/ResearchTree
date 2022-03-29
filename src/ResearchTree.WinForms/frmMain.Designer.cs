@@ -38,6 +38,9 @@
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lstCompletedItems = new System.Windows.Forms.ListView();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // btnAddTick
@@ -63,6 +66,7 @@
             // 
             this.lstAvailableItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
+            this.lstAvailableItems.FullRowSelect = true;
             this.lstAvailableItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstAvailableItems.Location = new System.Drawing.Point(40, 516);
             this.lstAvailableItems.Name = "lstAvailableItems";
@@ -79,7 +83,7 @@
             // btnStartResearch
             // 
             this.btnStartResearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartResearch.Location = new System.Drawing.Point(288, 662);
+            this.btnStartResearch.Location = new System.Drawing.Point(288, 664);
             this.btnStartResearch.Name = "btnStartResearch";
             this.btnStartResearch.Size = new System.Drawing.Size(205, 46);
             this.btnStartResearch.TabIndex = 15;
@@ -93,7 +97,7 @@
             this.columnHeader2,
             this.columnHeader3});
             this.lstCurrentItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lstCurrentItems.Location = new System.Drawing.Point(977, 514);
+            this.lstCurrentItems.Location = new System.Drawing.Point(499, 516);
             this.lstCurrentItems.Name = "lstCurrentItems";
             this.lstCurrentItems.Size = new System.Drawing.Size(242, 194);
             this.lstCurrentItems.TabIndex = 16;
@@ -122,17 +126,46 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(977, 479);
+            this.label2.Location = new System.Drawing.Point(499, 481);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(200, 32);
             this.label2.TabIndex = 18;
             this.label2.Text = "Current Research:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(747, 481);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 32);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Completed Research:";
+            // 
+            // lstCompletedItems
+            // 
+            this.lstCompletedItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4});
+            this.lstCompletedItems.FullRowSelect = true;
+            this.lstCompletedItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lstCompletedItems.Location = new System.Drawing.Point(756, 516);
+            this.lstCompletedItems.Name = "lstCompletedItems";
+            this.lstCompletedItems.Size = new System.Drawing.Size(242, 194);
+            this.lstCompletedItems.TabIndex = 21;
+            this.lstCompletedItems.UseCompatibleStateImageBehavior = false;
+            this.lstCompletedItems.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Research";
+            this.columnHeader4.Width = 200;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1635, 722);
+            this.Controls.Add(this.lstCompletedItems);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstCurrentItems);
@@ -158,5 +191,8 @@
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
+        private Label label3;
+        private ListView lstCompletedItems;
+        private ColumnHeader columnHeader4;
     }
 }

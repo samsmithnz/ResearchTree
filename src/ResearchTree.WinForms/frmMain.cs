@@ -11,9 +11,25 @@ namespace ResearchTree.WinForms
         {
             InitializeComponent();
 
-            _controller = new(ResearchPool.BuildDemoList(),
+            _controller = new(ResearchPool.BuildDemoList(true),
                 100, 100,//162, 100,
                 50, 50);// 81, 50);
+
+            //Add workers to combo
+            AddWorkersToCombo();
+            UpdateForm();
+        }
+
+        private void DrawGraph()
+        {
+            for (int i = this.Controls.Count - 1; i >= 0; i--)
+            {
+                if (this.Controls[i].Tag != null &&
+                    this.Controls[i].Tag.ToString() == "Graph")
+                {
+                    this.Controls.RemoveAt(i);
+                }
+            }
 
             foreach (ResearchItem item in _controller.ResearchItems)
             {
@@ -24,6 +40,7 @@ namespace ResearchTree.WinForms
                 button.Width = item.Width;
                 button.Height = item.Height;
                 button.Click += (s, e) => { MessageBox.Show(button.Location.ToString()); };
+                button.Tag = "Graph";
                 this.Controls.Add(button);
 
                 //Now draw the lines between the nodes
@@ -66,6 +83,7 @@ namespace ResearchTree.WinForms
                     //{
                     //    line.Location = new Point((int)edge.Item2.X , (int)edge.Item2.Y - (item.Height / 1));
                     //}
+                    line.Tag = "Graph";
                     this.Controls.Add(line);
                 }
             }
@@ -81,10 +99,6 @@ namespace ResearchTree.WinForms
                     control.SendToBack();
                 }
             }
-
-            //Add workers to combo
-            AddWorkersToCombo();
-            UpdateForm();
         }
 
         private void btnAddTick_Click(object sender, EventArgs e)
@@ -117,7 +131,7 @@ namespace ResearchTree.WinForms
             }
 
             //Get research in progress
-            List<ResearchItem> currentItems = _controller.GetUnstartedResearchItems();
+            List<ResearchItem> currentItems = _controller.GetCurrentlyWorkedResearchItems();
             lstCurrentItems.Items.Clear();
             if (currentItems != null)
             {
@@ -127,6 +141,18 @@ namespace ResearchTree.WinForms
                 }
             }
 
+            //Get research completed
+            List<ResearchItem> completedItems = _controller.GetCompletedResearchItems();
+            lstCompletedItems.Items.Clear();
+            if (completedItems != null)
+            {
+                foreach (ResearchItem? item in completedItems)
+                {
+                    lstCompletedItems.Items.Add(new ListViewItem(new string[] { item.Name }));
+                }
+            }
+
+            DrawGraph();
         }
 
         private void btnStartResearch_Click(object sender, EventArgs e)
