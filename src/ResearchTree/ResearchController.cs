@@ -160,7 +160,8 @@ namespace ResearchTree
                 }
             }
         }
-        public List<ResearchItem> GetAvailableResearchItems()
+
+        public List<ResearchItem> GetUnstartedResearchItems()
         {
             List<ResearchItem> filteredItems = new List<ResearchItem>();
             foreach (ResearchItem item in ResearchItems)
@@ -177,7 +178,7 @@ namespace ResearchTree
                             break;
                         }
                     }
-                    if (preReqsAreComplete == true)
+                    if (preReqsAreComplete == true && item.WorkersAssigned == 0)
                     {
                         filteredItems.Add(item);
                     }
@@ -199,7 +200,7 @@ namespace ResearchTree
             return filteredItems;
         }
 
-        public List<ResearchItem> GetResearchItemsCurrentlyBeingWorked()
+        public List<ResearchItem> GetCurrentlyWorkedResearchItems()
         {
             List<ResearchItem> filteredItems = new List<ResearchItem>();
             foreach (ResearchItem item in ResearchItems)

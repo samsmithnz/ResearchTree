@@ -13,13 +13,13 @@ namespace ResearchTree.Tests
     public class ResearchControllerTests
     {
         [TestMethod]
-        public void ResearchItemsAreActiveTest()
+        public void ResearchItemsAreCurrentlyWorkedTest()
         {
             //Arrange
             ResearchController controller = new(ResearchPool.BuildDemoList());
 
             //Act
-            List<ResearchItem> results = controller.GetAvailableResearchItems();
+            List<ResearchItem> results = controller.GetCurrentlyWorkedResearchItems();
 
             //Assert
             Assert.IsNotNull(results);
@@ -225,6 +225,7 @@ namespace ResearchTree.Tests
             //Arrange
             List<ResearchItem> items = ResearchPool.BuildDemoList();
             ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            itemC.WorkersAssigned = 0;
             ResearchController controller = new(items);
 
             //Act            
@@ -245,10 +246,6 @@ namespace ResearchTree.Tests
             ResearchController controller = new(items);
 
             //Act            
-            if (itemC != null)
-            {
-                itemC.WorkersAssigned = 1;
-            }
             controller.AddTick();
 
             //Assert
@@ -257,7 +254,7 @@ namespace ResearchTree.Tests
             Assert.IsFalse(itemC?.IsComplete);
 
             //Check that ItemE is not enabled as C is not finished.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNull(itemE);
         }
@@ -275,10 +272,6 @@ namespace ResearchTree.Tests
             ResearchController controller = new(items);
 
             //Act            
-            if (itemC != null)
-            {
-                itemC.WorkersAssigned = 1;
-            }
             controller.AddTick();
 
             //Assert
@@ -287,7 +280,76 @@ namespace ResearchTree.Tests
             Assert.IsTrue(itemC?.IsComplete);
 
             //Check that ItemE is enabled as C finishes.
-            List<ResearchItem> availableItems = controller.GetAvailableResearchItems();
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
+        }
+
+        [TestMethod]
+        public void AssignResearchItemWorkersAndAddTickUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+            ResearchController controller = new(items);
+            controller.WorkersAvailable = 1;
+
+            //Act
+            do
+            {
+                //Add tickets until the job is done.
+                controller.AddTick();
+                itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            } while (itemC?.IsComplete == false);
+
+            //Assert
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
+            Assert.AreEqual(0, itemC?.WorkersAssigned);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
+            ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
+            Assert.IsNotNull(itemE);
+        }
+
+        //Assign multiple workers.
+
+        [TestMethod]
+        public void AssignMultipleResearchItemWorkersAndAddTickUntilDoneTest()
+        {
+            //Arrange
+            List<ResearchItem> items = ResearchPool.BuildDemoList();
+            ResearchController controller = new(items);
+            controller.WorkersAvailable = 2;
+            ResearchItem? itemB = items.Where(c => c.Name == "B").FirstOrDefault();
+            if (itemB != null)
+            {
+                itemB.WorkCompleted = 0;
+                itemB.WorkersAssigned = 1;
+                itemB.IsComplete = false;
+            }
+            ResearchItem? itemC = items.Where(c => c.Name == "C").FirstOrDefault();
+
+            //Act
+            do
+            {
+                //Add tickets until the job is done.
+                controller.AddTick();
+                itemB = controller.ResearchItems.Where(c => c.Name == "B").FirstOrDefault();
+                itemC = controller.ResearchItems.Where(c => c.Name == "C").FirstOrDefault();
+            } while (itemC?.IsComplete == false || itemB?.IsComplete == false);
+
+            //Assert
+            Assert.AreEqual(5, itemB?.WorkCompleted);
+            Assert.IsTrue(itemB?.IsComplete);
+            Assert.AreEqual(0, itemB?.WorkersAssigned);
+            Assert.AreEqual(20, itemC?.WorkCompleted);
+            Assert.IsTrue(itemC?.IsComplete);
+            Assert.AreEqual(0, itemC?.WorkersAssigned);
+
+            //Check that ItemE is enabled as C finishes.
+            List<ResearchItem> availableItems = controller.GetUnstartedResearchItems();
             ResearchItem? itemE = availableItems.Where(c => c.Name == "E").FirstOrDefault();
             Assert.IsNotNull(itemE);
         }
