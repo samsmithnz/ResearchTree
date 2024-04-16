@@ -31,7 +31,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     - name: .NET test
       run: dotnet test src/ResearchTree.Tests/ResearchTree.Tests.csproj -c Release
     - name: .NET publish
@@ -41,3 +41,28 @@ jobs:
       with:
         name: drop
         path: src/ResearchTree/bin/Release
+
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs:
+    - build
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download the build artifacts
+      uses: actions/download-artifact@v4
+    - name: Display GitVersion outputs
+      run: |
+        echo "Version: ${{ needs.build.outputs.Version }}" 
+        echo "CommitsSinceVersionSource: ${{ needs.build.outputs.CommitsSinceVersionSource }}" 
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only create a release if there has been a commit/version change
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: "v${{ needs.build.outputs.Version }}"
+        release_name: "v${{ needs.build.outputs.Version }}"
