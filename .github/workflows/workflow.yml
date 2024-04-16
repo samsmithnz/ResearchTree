@@ -31,7 +31,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     - name: .NET test
       run: dotnet test src/ResearchTree.Tests/ResearchTree.Tests.csproj -c Release
     - name: .NET publish
