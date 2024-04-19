@@ -7,11 +7,29 @@ namespace ResearchTree
 {
     public class ResearchController
     {
+        /// <summary>
+        /// The list of research items
+        /// </summary>
         public List<ResearchItem> ResearchItems { get; set; }
+        /// <summary>
+        /// The width of each item
+        /// </summary>
         public int ItemWidth { get; set; }
+        /// <summary>
+        /// The height of each item
+        /// </summary>
         public int ItemHeight { get; set; }
+        /// <summary>
+        /// The horizontal buffer between each item
+        /// </summary>
         public int ItemWidthBuffer { get; set; }
+        /// <summary>
+        /// The vertical buffer between each item
+        /// </summary>
         public int ItemHeightBuffer { get; set; }
+        /// <summary>
+        /// The number of workers available to work on research
+        /// </summary>
         public int WorkersAvailable { get; set; }
 
         public ResearchController(List<ResearchItem> items,
