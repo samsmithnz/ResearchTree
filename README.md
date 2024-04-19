@@ -39,7 +39,7 @@ graph LR;
 
 ```mermaid
 mindmap
-  root((mindmap))
+  root((class))
     Warrior
       LongSword
       Two-HandedSword
