@@ -14,15 +14,15 @@ namespace ResearchTree.Tests
             //Arrange
             ResearchItem item = ResearchPool.CreateA();
 
-            //Act            
+            //Act
 
             //Assert
             Assert.IsNotNull(item);
             Assert.AreEqual("A", item.Name);
             Assert.AreEqual(0, item.PreReqs.Count);
-            Assert.AreEqual(1, item.CostToComplete);
-            Assert.AreEqual(1, item.WorkCompleted);
-            Assert.AreEqual(true, item.IsComplete);
+            Assert.AreEqual(5, item.CostToComplete);
+            Assert.AreEqual(0, item.WorkCompleted);
+            Assert.AreEqual(false, item.IsComplete);
         }
         [TestMethod]
         public void ResearchBTest()
@@ -30,7 +30,8 @@ namespace ResearchTree.Tests
             //Arrange
             ResearchItem item = ResearchPool.CreateB();
 
-            //Act            
+            //Act     
+            item.WorkCompleted = 5;
 
             //Assert
             Assert.IsNotNull(item);
@@ -54,8 +55,8 @@ namespace ResearchTree.Tests
             Assert.AreEqual("C", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
             Assert.AreEqual(ResearchPool.CreateA().Name, item.PreReqs[0]);
-            Assert.AreEqual(20, item.CostToComplete);
-            Assert.AreEqual(3, item.WorkCompleted);
+            Assert.AreEqual(5, item.CostToComplete);
+            Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }
 
@@ -73,7 +74,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual(2, item.PreReqs.Count);
             Assert.AreEqual(ResearchPool.CreateB().Name, item.PreReqs[0]);
             Assert.AreEqual(ResearchPool.CreateC().Name, item.PreReqs[1]);
-            Assert.AreEqual(50, item.CostToComplete);
+            Assert.AreEqual(5, item.CostToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }
@@ -91,7 +92,7 @@ namespace ResearchTree.Tests
             Assert.AreEqual("F", item.Name);
             Assert.AreEqual(1, item.PreReqs.Count);
             Assert.AreEqual(ResearchPool.CreateE().Name, item.PreReqs[0]);
-            Assert.AreEqual(50, item.CostToComplete);
+            Assert.AreEqual(5, item.CostToComplete);
             Assert.AreEqual(0, item.WorkCompleted);
             Assert.AreEqual(false, item.IsComplete);
         }
