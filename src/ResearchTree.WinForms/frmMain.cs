@@ -11,9 +11,9 @@ namespace ResearchTree.WinForms
         {
             InitializeComponent();
 
-            _controller = new(ResearchPool.BuildDemoList(true),
-                100, 100,//162, 100,
-                50, 50);// 81, 50);
+            _controller = new(ResearchPool.BuildDemoList(),
+                162, 100,
+                50, 50);
 
             //Add workers to combo
             AddWorkersToCombo();
@@ -25,7 +25,7 @@ namespace ResearchTree.WinForms
             for (int i = this.Controls.Count - 1; i >= 0; i--)
             {
                 if (this.Controls[i].Tag != null &&
-                    this.Controls[i].Tag.ToString() == "Graph")
+                    this.Controls[i].Tag?.ToString() == "Graph")
                 {
                     this.Controls.RemoveAt(i);
                 }
@@ -34,13 +34,15 @@ namespace ResearchTree.WinForms
             foreach (ResearchItem item in _controller.ResearchItems)
             {
                 //Draw the nodes
-                Button button = new();
-                button.Text = item.Name;
-                button.Location = new Point((int)item.Location.X - (item.Width / 2), (int)item.Location.Y - (item.Height / 2));
-                button.Width = item.Width;
-                button.Height = item.Height;
+                Button button = new()
+                {
+                    Text = item.Name,
+                    Location = new Point((int)item.Location.X - (item.Width / 2), (int)item.Location.Y - (item.Height / 2)),
+                    Width = item.Width,
+                    Height = item.Height,
+                    Tag = "Graph"
+                };
                 button.Click += (s, e) => { MessageBox.Show(button.Location.ToString()); };
-                button.Tag = "Graph";
                 if (item.IsComplete)
                 {
                     button.BackColor = Color.Green;
@@ -145,7 +147,7 @@ namespace ResearchTree.WinForms
             {
                 foreach (ResearchItem? item in currentItems)
                 {
-                    lstCurrentItems.Items.Add(new ListViewItem(new string[] { item.Name, item.WorkCompleted.ToString() + "/" + item.WorkToComplete.ToString() }));
+                    lstCurrentItems.Items.Add(new ListViewItem(new string[] { item.Name, item.WorkCompleted.ToString() + "/" + item.CostToComplete.ToString() }));
                 }
             }
 

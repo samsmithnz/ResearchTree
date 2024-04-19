@@ -41,7 +41,6 @@ namespace ResearchTree
             ItemWidthBuffer = itemWidthBuffer;
             ItemHeightBuffer = itemHeightBuffer;
 
-
             //Verify that all of the children exist
             ValidateItems(items);
 
@@ -140,11 +139,6 @@ namespace ResearchTree
                 {
                     //Increment the work done
                     item.WorkCompleted += item.WorkersAssigned;
-                    //If the work is completed, mark the research as done!
-                    if (item.WorkCompleted == item.WorkToComplete && item.IsComplete == false)
-                    {
-                        item.IsComplete = true;
-                    }
                 }
             }
             return true;
