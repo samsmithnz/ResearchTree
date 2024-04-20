@@ -13,7 +13,6 @@ graph LR;
   IfItemSelected--"No"-->End
   IfWorkersAssigned-->DoWork
   IfWorkersAssigned--"No"-->End
-  DoWork-->DoWork
   DoWork--"If done"-->FindNewResearch
   DoWork--"If not done"-->End
   FindNewResearch-->End
