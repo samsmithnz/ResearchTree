@@ -4,16 +4,19 @@
 This is the research workflow
 ```mermaid
 graph LR;
-  Start;
-  IfWorkersAssigned
+  IfItemSelected[Item is selected and still has work]
+  IfWorkersAssigned[Item has workers assigned]
   DoWork
   FindNewResearch
-  End;
-  Start-->IfWorkersAssigned;
-  IfWorkersAssigned-->DoWork;
+  End
+  IfItemSelected-->IfWorkersAssigned
+  IfItemSelected--"No"-->End
+  IfWorkersAssigned-->DoWork
+  IfWorkersAssigned--"No"-->End
   DoWork-->DoWork
-  DoWork-->FindNewResearch;
-  FindNewResearch-->End;
+  DoWork--"If done"-->FindNewResearch
+  DoWork--"If not done"-->End
+  FindNewResearch-->End
 ```
 
 Here are some research trees we want to support
